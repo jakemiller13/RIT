@@ -1,0 +1,1165 @@
+Subsidiary,Month,Year,Ridership
+Regional Transit Service,4,2006,1066870
+Regional Transit Service,5,2006,1217939
+Regional Transit Service,6,2006,1183756
+Regional Transit Service,7,2006,933542
+Regional Transit Service,8,2006,1018668
+Regional Transit Service,9,2006,1227358
+Regional Transit Service,10,2006,1307201
+Regional Transit Service,11,2006,1252595
+Regional Transit Service,12,2006,1178240
+Regional Transit Service,1,2007,1312857
+Regional Transit Service,2,2007,1024364
+Regional Transit Service,3,2007,1327453
+Regional Transit Service,4,2007,1175758
+Regional Transit Service,5,2007,1419323
+Regional Transit Service,6,2007,1243035
+Regional Transit Service,7,2007,1183558
+Regional Transit Service,8,2007,1197149
+Regional Transit Service,9,2007,1215283
+Regional Transit Service,10,2007,1390065
+Regional Transit Service,11,2007,1247593
+Regional Transit Service,12,2007,1135866
+Regional Transit Service,1,2008,1337090
+Regional Transit Service,2,2008,1205912
+Regional Transit Service,3,2008,1312712
+Regional Transit Service,4,2008,1291456
+Regional Transit Service,5,2008,1385221
+Regional Transit Service,6,2008,1383113
+Regional Transit Service,7,2008,1244695
+Regional Transit Service,8,2008,1139531
+Regional Transit Service,9,2008,1552479
+Regional Transit Service,10,2008,1635706
+Regional Transit Service,11,2008,1368276
+Regional Transit Service,12,2008,1356130
+Regional Transit Service,1,2009,1477870
+Regional Transit Service,2,2009,1348092
+Regional Transit Service,3,2009,1554685
+Regional Transit Service,4,2009,1377039
+Regional Transit Service,5,2009,1483123
+Regional Transit Service,6,2009,1434123
+Regional Transit Service,7,2009,1221534
+Regional Transit Service,8,2009,1115882
+Regional Transit Service,9,2009,1534762
+Regional Transit Service,10,2009,1579328
+Regional Transit Service,11,2009,1387184
+Regional Transit Service,12,2009,1330451
+Regional Transit Service,1,2010,1437704
+Regional Transit Service,2,2010,1286915
+Regional Transit Service,3,2010,1637746
+Regional Transit Service,4,2010,1384187
+Regional Transit Service,5,2010,1445533
+Regional Transit Service,6,2010,1397040
+Regional Transit Service,7,2010,1251525
+Regional Transit Service,8,2010,1206662
+Regional Transit Service,9,2010,1508099
+Regional Transit Service,10,2010,1535758
+Regional Transit Service,11,2010,1424892
+Regional Transit Service,12,2010,1322725
+Regional Transit Service,1,2011,1464574
+Regional Transit Service,2,2011,1295788
+Regional Transit Service,3,2011,1663343
+Regional Transit Service,4,2011,1406128
+Regional Transit Service,5,2011,1548508
+Regional Transit Service,6,2011,1454877
+Regional Transit Service,7,2011,1233466
+Regional Transit Service,8,2011,1285596
+Regional Transit Service,9,2011,1577705
+Regional Transit Service,10,2011,1581780
+Regional Transit Service,11,2011,1476987
+Regional Transit Service,12,2011,1399985
+Regional Transit Service,1,2012,1549775
+Regional Transit Service,2,2012,1440456
+Regional Transit Service,3,2012,1614907
+Regional Transit Service,4,2012,1367215
+Regional Transit Service,5,2012,1559536
+Regional Transit Service,6,2012,1407904
+Regional Transit Service,7,2012,1252287
+Regional Transit Service,8,2012,1303808
+Regional Transit Service,9,2012,1483475
+Regional Transit Service,10,2012,1642908
+Regional Transit Service,11,2012,1473780
+Regional Transit Service,12,2012,1359309
+Regional Transit Service,1,2013,1525251
+Regional Transit Service,2,2013,1352064
+Regional Transit Service,3,2013,1529562
+Lift Line ,4,2006,14268
+Lift Line ,5,2006,15017
+Lift Line ,6,2006,14994
+Lift Line ,7,2006,13494
+Lift Line ,8,2006,15005
+Lift Line ,9,2006,14374
+Lift Line ,10,2006,15826
+Lift Line ,11,2006,15049
+Lift Line ,12,2006,14907
+Lift Line ,1,2007,15642
+Lift Line ,2,2007,13440
+Lift Line ,3,2007,16179
+Lift Line ,4,2007,14247
+Lift Line ,5,2007,15642
+Lift Line ,6,2007,14533
+Lift Line ,7,2007,14212
+Lift Line ,8,2007,14674
+Lift Line ,9,2007,13840
+Lift Line ,10,2007,15923
+Lift Line ,11,2007,15042
+Lift Line ,12,2007,14338
+Lift Line ,1,2008,15838
+Lift Line ,2,2008,15007
+Lift Line ,3,2008,15984
+Lift Line ,4,2008,15370
+Lift Line ,5,2008,15141
+Lift Line ,6,2008,14880
+Lift Line ,7,2008,15226
+Lift Line ,8,2008,14516
+Lift Line ,9,2008,14933
+Lift Line ,10,2008,15774
+Lift Line ,11,2008,14829
+Lift Line ,12,2008,14808
+Lift Line ,1,2009,14852
+Lift Line ,2,2009,14688
+Lift Line ,3,2009,16686
+Lift Line ,4,2009,15248
+Lift Line ,5,2009,14968
+Lift Line ,6,2009,15530
+Lift Line ,7,2009,15196
+Lift Line ,8,2009,14460
+Lift Line ,9,2009,14952
+Lift Line ,10,2009,15042
+Lift Line ,11,2009,14019
+Lift Line ,12,2009,15012
+Lift Line ,1,2010,14647
+Lift Line ,2,2010,14121
+Lift Line ,3,2010,16475
+Lift Line ,4,2010,14305
+Lift Line ,5,2010,13770
+Lift Line ,6,2010,14197
+Lift Line ,7,2010,13824
+Lift Line ,8,2010,13873
+Lift Line ,9,2010,13984
+Lift Line ,10,2010,14257
+Lift Line ,11,2010,13984
+Lift Line ,12,2010,14195
+Lift Line ,1,2011,14088
+Lift Line ,2,2011,12643
+Lift Line ,3,2011,15116
+Lift Line ,4,2011,13827
+Lift Line ,5,2011,13658
+Lift Line ,6,2011,14103
+Lift Line ,7,2011,13206
+Lift Line ,8,2011,13577
+Lift Line ,9,2011,13861
+Lift Line ,10,2011,13811
+Lift Line ,11,2011,13776
+Lift Line ,12,2011,14097
+Lift Line ,1,2012,13933
+Lift Line ,2,2012,14426
+Lift Line ,3,2012,15564
+Lift Line ,4,2012,13807
+Lift Line ,5,2012,14294
+Lift Line ,6,2012,13839
+Lift Line ,7,2012,13194
+Lift Line ,8,2012,13890
+Lift Line ,9,2012,12780
+Lift Line ,10,2012,14429
+Lift Line ,11,2012,14486
+Lift Line ,12,2012,13689
+Lift Line ,1,2013,15046
+Lift Line ,2,2013,14212
+Lift Line ,3,2013,15688
+Batavia Bus Service,4,2006,6314
+Batavia Bus Service,5,2006,6719
+Batavia Bus Service,6,2006,5142
+Batavia Bus Service,7,2006,3806
+Batavia Bus Service,8,2006,5008
+Batavia Bus Service,9,2006,7034
+Batavia Bus Service,10,2006,7381
+Batavia Bus Service,11,2006,6846
+Batavia Bus Service,12,2006,6122
+Batavia Bus Service,1,2007,7019
+Batavia Bus Service,2,2007,6477
+Batavia Bus Service,3,2007,7573
+Batavia Bus Service,4,2007,6653
+Batavia Bus Service,5,2007,6807
+Batavia Bus Service,6,2007,5244
+Batavia Bus Service,7,2007,4469
+Batavia Bus Service,8,2007,5272
+Batavia Bus Service,9,2007,6377
+Batavia Bus Service,10,2007,7504
+Batavia Bus Service,11,2007,6676
+Batavia Bus Service,12,2007,5867
+Batavia Bus Service,1,2008,6323
+Batavia Bus Service,2,2008,6959
+Batavia Bus Service,3,2008,6824
+Batavia Bus Service,4,2008,5616
+Batavia Bus Service,5,2008,5141
+Batavia Bus Service,6,2008,4001
+Batavia Bus Service,7,2008,3842
+Batavia Bus Service,8,2008,3820
+Batavia Bus Service,9,2008,5837
+Batavia Bus Service,10,2008,6242
+Batavia Bus Service,11,2008,5081
+Batavia Bus Service,12,2008,5166
+Batavia Bus Service,1,2009,5297
+Batavia Bus Service,2,2009,5573
+Batavia Bus Service,3,2009,5820
+Batavia Bus Service,4,2009,5812
+Batavia Bus Service,5,2009,5146
+Batavia Bus Service,6,2009,4348
+Batavia Bus Service,7,2009,3986
+Batavia Bus Service,8,2009,4109
+Batavia Bus Service,9,2009,5765
+Batavia Bus Service,10,2009,6201
+Batavia Bus Service,11,2009,5454
+Batavia Bus Service,12,2009,5435
+Batavia Bus Service,1,2010,4913
+Batavia Bus Service,2,2010,5696
+Batavia Bus Service,3,2010,6262
+Batavia Bus Service,4,2010,5957
+Batavia Bus Service,5,2010,5186
+Batavia Bus Service,6,2010,4400
+Batavia Bus Service,7,2010,3889
+Batavia Bus Service,8,2010,4300
+Batavia Bus Service,9,2010,5467
+Batavia Bus Service,10,2010,5508
+Batavia Bus Service,11,2010,5384
+Batavia Bus Service,12,2010,5215
+Batavia Bus Service,1,2011,5528
+Batavia Bus Service,2,2011,5677
+Batavia Bus Service,3,2011,6737
+Batavia Bus Service,4,2011,5632
+Batavia Bus Service,5,2011,5345
+Batavia Bus Service,6,2011,4493
+Batavia Bus Service,7,2011,3999
+Batavia Bus Service,8,2011,4914
+Batavia Bus Service,9,2011,6209
+Batavia Bus Service,10,2011,5965
+Batavia Bus Service,11,2011,5908
+Batavia Bus Service,12,2011,5209
+Batavia Bus Service,1,2012,5703
+Batavia Bus Service,2,2012,6392
+Batavia Bus Service,3,2012,6108
+Batavia Bus Service,4,2012,5822
+Batavia Bus Service,5,2012,5086
+Batavia Bus Service,6,2012,3473
+Batavia Bus Service,7,2012,3060
+Batavia Bus Service,8,2012,4133
+Batavia Bus Service,9,2012,5429
+Batavia Bus Service,10,2012,6457
+Batavia Bus Service,11,2012,5844
+Batavia Bus Service,12,2012,4398
+Batavia Bus Service,1,2013,5183
+Batavia Bus Service,2,2013,5648
+Batavia Bus Service,3,2013,5420
+Livingston Area Transportation Service,4,2006,23293
+Livingston Area Transportation Service,5,2006,16319
+Livingston Area Transportation Service,6,2006,11486
+Livingston Area Transportation Service,7,2006,10928
+Livingston Area Transportation Service,8,2006,13506
+Livingston Area Transportation Service,9,2006,23971
+Livingston Area Transportation Service,10,2006,23572
+Livingston Area Transportation Service,11,2006,21844
+Livingston Area Transportation Service,12,2006,20707
+Livingston Area Transportation Service,1,2007,21429
+Livingston Area Transportation Service,2,2007,26198
+Livingston Area Transportation Service,3,2007,22658
+Livingston Area Transportation Service,4,2007,26812
+Livingston Area Transportation Service,5,2007,15749
+Livingston Area Transportation Service,6,2007,10171
+Livingston Area Transportation Service,7,2007,10556
+Livingston Area Transportation Service,8,2007,15624
+Livingston Area Transportation Service,9,2007,26231
+Livingston Area Transportation Service,10,2007,27973
+Livingston Area Transportation Service,11,2007,26033
+Livingston Area Transportation Service,12,2007,18789
+Livingston Area Transportation Service,1,2008,20275
+Livingston Area Transportation Service,2,2008,31079
+Livingston Area Transportation Service,3,2008,22648
+Livingston Area Transportation Service,4,2008,32638
+Livingston Area Transportation Service,5,2008,20730
+Livingston Area Transportation Service,6,2008,10188
+Livingston Area Transportation Service,7,2008,11356
+Livingston Area Transportation Service,8,2008,16830
+Livingston Area Transportation Service,9,2008,31057
+Livingston Area Transportation Service,10,2008,30536
+Livingston Area Transportation Service,11,2008,27777
+Livingston Area Transportation Service,12,2008,19987
+Livingston Area Transportation Service,1,2009,26116
+Livingston Area Transportation Service,2,2009,33792
+Livingston Area Transportation Service,3,2009,22863
+Livingston Area Transportation Service,4,2009,30260
+Livingston Area Transportation Service,5,2009,23072
+Livingston Area Transportation Service,6,2009,10988
+Livingston Area Transportation Service,7,2009,11877
+Livingston Area Transportation Service,8,2009,12835
+Livingston Area Transportation Service,9,2009,30600
+Livingston Area Transportation Service,10,2009,30776
+Livingston Area Transportation Service,11,2009,25237
+Livingston Area Transportation Service,12,2009,24097
+Livingston Area Transportation Service,1,2010,19006
+Livingston Area Transportation Service,2,2010,28058
+Livingston Area Transportation Service,3,2010,22854
+Livingston Area Transportation Service,4,2010,28114
+Livingston Area Transportation Service,5,2010,17571
+Livingston Area Transportation Service,6,2010,10542
+Livingston Area Transportation Service,7,2010,10739
+Livingston Area Transportation Service,8,2010,13119
+Livingston Area Transportation Service,9,2010,25571
+Livingston Area Transportation Service,10,2010,25945
+Livingston Area Transportation Service,11,2010,21728
+Livingston Area Transportation Service,12,2010,22274
+Livingston Area Transportation Service,1,2011,19430
+Livingston Area Transportation Service,2,2011,26561
+Livingston Area Transportation Service,3,2011,23840
+Livingston Area Transportation Service,4,2011,28489
+Livingston Area Transportation Service,5,2011,17016
+Livingston Area Transportation Service,6,2011,11138
+Livingston Area Transportation Service,7,2011,10527
+Livingston Area Transportation Service,8,2011,14190
+Livingston Area Transportation Service,9,2011,26075
+Livingston Area Transportation Service,10,2011,24844
+Livingston Area Transportation Service,11,2011,23572
+Livingston Area Transportation Service,12,2011,21196
+Livingston Area Transportation Service,1,2012,19700
+Livingston Area Transportation Service,2,2012,26695
+Livingston Area Transportation Service,3,2012,22520
+Livingston Area Transportation Service,4,2012,25392
+Livingston Area Transportation Service,5,2012,16562
+Livingston Area Transportation Service,6,2012,10483
+Livingston Area Transportation Service,7,2012,10908
+Livingston Area Transportation Service,8,2012,14774
+Livingston Area Transportation Service,9,2012,25350
+Livingston Area Transportation Service,10,2012,25393
+Livingston Area Transportation Service,11,2012,23761
+Livingston Area Transportation Service,12,2012,17440
+Livingston Area Transportation Service,1,2013,17497
+Livingston Area Transportation Service,2,2013,25227
+Livingston Area Transportation Service,3,2013,18445
+Orleans Transit Service,4,2006,2054
+Orleans Transit Service,5,2006,36780
+Orleans Transit Service,6,2006,2055
+Orleans Transit Service,7,2006,1854
+Orleans Transit Service,8,2006,2396
+Orleans Transit Service,9,2006,5669
+Orleans Transit Service,10,2006,5713
+Orleans Transit Service,11,2006,5369
+Orleans Transit Service,12,2006,4471
+Orleans Transit Service,1,2007,4177
+Orleans Transit Service,2,2007,6695
+Orleans Transit Service,3,2007,6401
+Orleans Transit Service,4,2007,6642
+Orleans Transit Service,5,2007,31263
+Orleans Transit Service,6,2007,2741
+Orleans Transit Service,7,2007,2366
+Orleans Transit Service,8,2007,3373
+Orleans Transit Service,9,2007,6124
+Orleans Transit Service,10,2007,6663
+Orleans Transit Service,11,2007,6100
+Orleans Transit Service,12,2007,4461
+Orleans Transit Service,1,2008,3387
+Orleans Transit Service,2,2008,8063
+Orleans Transit Service,3,2008,6225
+Orleans Transit Service,4,2008,7117
+Orleans Transit Service,5,2008,4368
+Orleans Transit Service,6,2008,2242
+Orleans Transit Service,7,2008,2233
+Orleans Transit Service,8,2008,3564
+Orleans Transit Service,9,2008,7652
+Orleans Transit Service,10,2008,7081
+Orleans Transit Service,11,2008,5375
+Orleans Transit Service,12,2008,3938
+Orleans Transit Service,1,2009,3585
+Orleans Transit Service,2,2009,6702
+Orleans Transit Service,3,2009,5557
+Orleans Transit Service,4,2009,6759
+Orleans Transit Service,5,2009,5110
+Orleans Transit Service,6,2009,2163
+Orleans Transit Service,7,2009,2405
+Orleans Transit Service,8,2009,3226
+Orleans Transit Service,9,2009,8074
+Orleans Transit Service,10,2009,8287
+Orleans Transit Service,11,2009,7234
+Orleans Transit Service,12,2009,6343
+Orleans Transit Service,1,2010,3892
+Orleans Transit Service,2,2010,7346
+Orleans Transit Service,3,2010,7267
+Orleans Transit Service,4,2010,8837
+Orleans Transit Service,5,2010,5038
+Orleans Transit Service,6,2010,2500
+Orleans Transit Service,7,2010,2632
+Orleans Transit Service,8,2010,3261
+Orleans Transit Service,9,2010,9526
+Orleans Transit Service,10,2010,8137
+Orleans Transit Service,11,2010,7557
+Orleans Transit Service,12,2010,6542
+Orleans Transit Service,1,2011,5093
+Orleans Transit Service,2,2011,9279
+Orleans Transit Service,3,2011,8060
+Orleans Transit Service,4,2011,9803
+Orleans Transit Service,5,2011,6276
+Orleans Transit Service,6,2011,3102
+Orleans Transit Service,7,2011,2745
+Orleans Transit Service,8,2011,3230
+Orleans Transit Service,9,2011,2972
+Orleans Transit Service,10,2011,3040
+Orleans Transit Service,11,2011,2879
+Orleans Transit Service,12,2011,2779
+Orleans Transit Service,1,2012,2824
+Orleans Transit Service,2,2012,2931
+Orleans Transit Service,3,2012,3124
+Orleans Transit Service,4,2012,2784
+Orleans Transit Service,5,2012,2799
+Orleans Transit Service,6,2012,2754
+Orleans Transit Service,7,2012,2909
+Orleans Transit Service,8,2012,3116
+Orleans Transit Service,9,2012,2588
+Orleans Transit Service,10,2012,3130
+Orleans Transit Service,11,2012,2961
+Orleans Transit Service,12,2012,2871
+Orleans Transit Service,1,2013,3100
+Orleans Transit Service,2,2013,2978
+Orleans Transit Service,3,2013,3289
+Seneca Transit Service,4,2006,3159
+Seneca Transit Service,5,2006,3271
+Seneca Transit Service,6,2006,3283
+Seneca Transit Service,7,2006,2839
+Seneca Transit Service,8,2006,3172
+Seneca Transit Service,9,2006,2827
+Seneca Transit Service,10,2006,3110
+Seneca Transit Service,11,2006,3175
+Seneca Transit Service,12,2006,2824
+Seneca Transit Service,1,2007,2947
+Seneca Transit Service,2,2007,2602
+Seneca Transit Service,3,2007,3317
+Seneca Transit Service,4,2007,3316
+Seneca Transit Service,5,2007,3534
+Seneca Transit Service,6,2007,3475
+Seneca Transit Service,7,2007,3545
+Seneca Transit Service,8,2007,3716
+Seneca Transit Service,9,2007,3133
+Seneca Transit Service,10,2007,3770
+Seneca Transit Service,11,2007,3586
+Seneca Transit Service,12,2007,3419
+Seneca Transit Service,1,2008,4919
+Seneca Transit Service,2,2008,4866
+Seneca Transit Service,3,2008,5062
+Seneca Transit Service,4,2008,5343
+Seneca Transit Service,5,2008,4861
+Seneca Transit Service,6,2008,5461
+Seneca Transit Service,7,2008,5983
+Seneca Transit Service,8,2008,5944
+Seneca Transit Service,9,2008,5366
+Seneca Transit Service,10,2008,6693
+Seneca Transit Service,11,2008,4442
+Seneca Transit Service,12,2008,5105
+Seneca Transit Service,1,2009,4717
+Seneca Transit Service,2,2009,5193
+Seneca Transit Service,3,2009,5332
+Seneca Transit Service,4,2009,5322
+Seneca Transit Service,5,2009,4910
+Seneca Transit Service,6,2009,5819
+Seneca Transit Service,7,2009,6673
+Seneca Transit Service,8,2009,7117
+Seneca Transit Service,9,2009,7002
+Seneca Transit Service,10,2009,7875
+Seneca Transit Service,11,2009,5711
+Seneca Transit Service,12,2009,6150
+Seneca Transit Service,1,2010,5680
+Seneca Transit Service,2,2010,5335
+Seneca Transit Service,3,2010,7270
+Seneca Transit Service,4,2010,5322
+Seneca Transit Service,5,2010,4910
+Seneca Transit Service,6,2010,5819
+Seneca Transit Service,7,2010,6673
+Seneca Transit Service,8,2010,7117
+Seneca Transit Service,9,2010,7002
+Seneca Transit Service,10,2010,7875
+Seneca Transit Service,11,2010,5711
+Seneca Transit Service,12,2010,6150
+Seneca Transit Service,1,2011,5680
+Seneca Transit Service,2,2011,5335
+Seneca Transit Service,3,2011,7270
+Seneca Transit Service,4,2011,7063
+Seneca Transit Service,5,2011,7175
+Seneca Transit Service,6,2011,7879
+Seneca Transit Service,7,2011,7182
+Seneca Transit Service,8,2011,8589
+Seneca Transit Service,9,2011,7759
+Seneca Transit Service,10,2011,8373
+Seneca Transit Service,11,2011,7694
+Seneca Transit Service,12,2011,6955
+Seneca Transit Service,1,2012,6564
+Seneca Transit Service,2,2012,5168
+Seneca Transit Service,3,2012,7538
+Seneca Transit Service,4,2012,8192
+Seneca Transit Service,5,2012,8228
+Seneca Transit Service,6,2012,6516
+Seneca Transit Service,7,2012,6505
+Seneca Transit Service,8,2012,7756
+Seneca Transit Service,9,2012,6234
+Seneca Transit Service,10,2012,7369
+Seneca Transit Service,11,2012,7218
+Seneca Transit Service,12,2012,6565
+Seneca Transit Service,1,2013,7346
+Seneca Transit Service,2,2013,6675
+Seneca Transit Service,3,2013,7272
+Wayne Area Transportation Service,4,2006,9970
+Wayne Area Transportation Service,5,2006,11676
+Wayne Area Transportation Service,6,2006,10941
+Wayne Area Transportation Service,7,2006,9970
+Wayne Area Transportation Service,8,2006,14219
+Wayne Area Transportation Service,9,2006,13888
+Wayne Area Transportation Service,10,2006,15541
+Wayne Area Transportation Service,11,2006,10471
+Wayne Area Transportation Service,12,2006,10053
+Wayne Area Transportation Service,1,2007,10680
+Wayne Area Transportation Service,2,2007,9047
+Wayne Area Transportation Service,3,2007,10888
+Wayne Area Transportation Service,4,2007,10668
+Wayne Area Transportation Service,5,2007,13965
+Wayne Area Transportation Service,6,2007,11557
+Wayne Area Transportation Service,7,2007,12364
+Wayne Area Transportation Service,8,2007,16121
+Wayne Area Transportation Service,9,2007,15073
+Wayne Area Transportation Service,10,2007,16373
+Wayne Area Transportation Service,11,2007,11087
+Wayne Area Transportation Service,12,2007,10101
+Wayne Area Transportation Service,1,2008,11442
+Wayne Area Transportation Service,2,2008,10805
+Wayne Area Transportation Service,3,2008,11535
+Wayne Area Transportation Service,4,2008,12705
+Wayne Area Transportation Service,5,2008,12608
+Wayne Area Transportation Service,6,2008,11883
+Wayne Area Transportation Service,7,2008,13325
+Wayne Area Transportation Service,8,2008,13754
+Wayne Area Transportation Service,9,2008,18642
+Wayne Area Transportation Service,10,2008,19364
+Wayne Area Transportation Service,11,2008,10512
+Wayne Area Transportation Service,12,2008,11955
+Wayne Area Transportation Service,1,2009,10381
+Wayne Area Transportation Service,2,2009,10227
+Wayne Area Transportation Service,3,2009,11668
+Wayne Area Transportation Service,4,2009,11542
+Wayne Area Transportation Service,5,2009,11312
+Wayne Area Transportation Service,6,2009,11538
+Wayne Area Transportation Service,7,2009,12094
+Wayne Area Transportation Service,8,2009,12677
+Wayne Area Transportation Service,9,2009,19512
+Wayne Area Transportation Service,10,2009,19457
+Wayne Area Transportation Service,11,2009,10135
+Wayne Area Transportation Service,12,2009,11146
+Wayne Area Transportation Service,1,2010,10088
+Wayne Area Transportation Service,2,2010,10163
+Wayne Area Transportation Service,3,2010,12286
+Wayne Area Transportation Service,4,2010,11622
+Wayne Area Transportation Service,5,2010,10953
+Wayne Area Transportation Service,6,2010,11222
+Wayne Area Transportation Service,7,2010,11318
+Wayne Area Transportation Service,8,2010,13714
+Wayne Area Transportation Service,9,2010,16795
+Wayne Area Transportation Service,10,2010,15004
+Wayne Area Transportation Service,11,2010,10873
+Wayne Area Transportation Service,12,2010,10729
+Wayne Area Transportation Service,1,2011,10850
+Wayne Area Transportation Service,2,2011,10355
+Wayne Area Transportation Service,3,2011,12006
+Wayne Area Transportation Service,4,2011,11257
+Wayne Area Transportation Service,5,2011,11926
+Wayne Area Transportation Service,6,2011,12509
+Wayne Area Transportation Service,7,2011,11718
+Wayne Area Transportation Service,8,2011,13384
+Wayne Area Transportation Service,9,2011,19488
+Wayne Area Transportation Service,10,2011,19169
+Wayne Area Transportation Service,11,2011,12015
+Wayne Area Transportation Service,12,2011,11418
+Wayne Area Transportation Service,1,2012,11777
+Wayne Area Transportation Service,2,2012,12146
+Wayne Area Transportation Service,3,2012,12917
+Wayne Area Transportation Service,4,2012,12062
+Wayne Area Transportation Service,5,2012,12946
+Wayne Area Transportation Service,6,2012,11402
+Wayne Area Transportation Service,7,2012,13329
+Wayne Area Transportation Service,8,2012,15417
+Wayne Area Transportation Service,9,2012,17674
+Wayne Area Transportation Service,10,2012,17242
+Wayne Area Transportation Service,11,2012,11171
+Wayne Area Transportation Service,12,2012,10393
+Wayne Area Transportation Service,1,2013,12030
+Wayne Area Transportation Service,2,2013,11790
+Wayne Area Transportation Service,3,2013,16713
+Wyoming Transportation Service,4,2006,6785
+Wyoming Transportation Service,5,2006,8024
+Wyoming Transportation Service,6,2006,7944
+Wyoming Transportation Service,7,2006,8558
+Wyoming Transportation Service,8,2006,8892
+Wyoming Transportation Service,9,2006,7028
+Wyoming Transportation Service,10,2006,23198
+Wyoming Transportation Service,11,2006,7221
+Wyoming Transportation Service,12,2006,6517
+Wyoming Transportation Service,1,2007,7155
+Wyoming Transportation Service,2,2007,6728
+Wyoming Transportation Service,3,2007,8600
+Wyoming Transportation Service,4,2007,7465
+Wyoming Transportation Service,5,2007,8265
+Wyoming Transportation Service,6,2007,7688
+Wyoming Transportation Service,7,2007,9701
+Wyoming Transportation Service,8,2007,9225
+Wyoming Transportation Service,9,2007,6227
+Wyoming Transportation Service,10,2007,16041
+Wyoming Transportation Service,11,2007,7230
+Wyoming Transportation Service,12,2007,7029
+Wyoming Transportation Service,1,2008,7847
+Wyoming Transportation Service,2,2008,8414
+Wyoming Transportation Service,3,2008,8574
+Wyoming Transportation Service,4,2008,8640
+Wyoming Transportation Service,5,2008,8351
+Wyoming Transportation Service,6,2008,8716
+Wyoming Transportation Service,7,2008,12945
+Wyoming Transportation Service,8,2008,10461
+Wyoming Transportation Service,9,2008,8143
+Wyoming Transportation Service,10,2008,17505
+Wyoming Transportation Service,11,2008,5404
+Wyoming Transportation Service,12,2008,6206
+Wyoming Transportation Service,1,2009,6465
+Wyoming Transportation Service,2,2009,6253
+Wyoming Transportation Service,3,2009,6996
+Wyoming Transportation Service,4,2009,6839
+Wyoming Transportation Service,5,2009,6518
+Wyoming Transportation Service,6,2009,6608
+Wyoming Transportation Service,7,2009,8808
+Wyoming Transportation Service,8,2009,7262
+Wyoming Transportation Service,9,2009,6308
+Wyoming Transportation Service,10,2009,10565
+Wyoming Transportation Service,11,2009,5962
+Wyoming Transportation Service,12,2009,6461
+Wyoming Transportation Service,1,2010,6375
+Wyoming Transportation Service,2,2010,6586
+Wyoming Transportation Service,3,2010,8051
+Wyoming Transportation Service,4,2010,7333
+Wyoming Transportation Service,5,2010,6965
+Wyoming Transportation Service,6,2010,7004
+Wyoming Transportation Service,7,2010,8545
+Wyoming Transportation Service,8,2010,7226
+Wyoming Transportation Service,9,2010,6582
+Wyoming Transportation Service,10,2010,14361
+Wyoming Transportation Service,11,2010,6645
+Wyoming Transportation Service,12,2010,6893
+Wyoming Transportation Service,1,2011,7133
+Wyoming Transportation Service,2,2011,7115
+Wyoming Transportation Service,3,2011,7449
+Wyoming Transportation Service,4,2011,6996
+Wyoming Transportation Service,5,2011,7150
+Wyoming Transportation Service,6,2011,8486
+Wyoming Transportation Service,7,2011,7747
+Wyoming Transportation Service,8,2011,7840
+Wyoming Transportation Service,9,2011,6967
+Wyoming Transportation Service,10,2011,12722
+Wyoming Transportation Service,11,2011,6683
+Wyoming Transportation Service,12,2011,6666
+Wyoming Transportation Service,1,2012,6770
+Wyoming Transportation Service,2,2012,7099
+Wyoming Transportation Service,3,2012,7230
+Wyoming Transportation Service,4,2012,6503
+Wyoming Transportation Service,5,2012,7200
+Wyoming Transportation Service,6,2012,8673
+Wyoming Transportation Service,7,2012,7739
+Wyoming Transportation Service,8,2012,7292
+Wyoming Transportation Service,9,2012,5992
+Wyoming Transportation Service,10,2012,7481
+Wyoming Transportation Service,11,2012,6456
+Wyoming Transportation Service,12,2012,5521
+Wyoming Transportation Service,1,2013,6618
+Wyoming Transportation Service,2,2013,6141
+Wyoming Transportation Service,3,2013,6311
+Regional Transit Service,4,2013,1450067
+Regional Transit Service,5,2013,1536144
+Regional Transit Service,6,2013,1332090
+Regional Transit Service,7,2013,1309577
+Regional Transit Service,8,2013,1496568
+Regional Transit Service,9,2013,1531107
+Regional Transit Service,10,2013,1689258
+Regional Transit Service,11,2013,1448802
+Regional Transit Service,12,2013,1403377
+Regional Transit Service,1,2014,1432936
+Regional Transit Service,2,2014,1373626
+Regional Transit Service,3,2014,1507361
+Lift Line,4,2013,14575
+Lift Line,5,2013,15102
+Lift Line,6,2013,13807
+Lift Line,7,2013,14317
+Lift Line,8,2013,14950
+Lift Line,9,2013,14502
+Lift Line,10,2013,16302
+Lift Line,11,2013,14890
+Lift Line,12,2013,14962
+Lift Line,1,2014,14927
+Lift Line,2,2014,14643
+Lift Line,3,2014,15919
+Batavia Bus Service,4,2013,6385
+Batavia Bus Service,5,2013,4906
+Batavia Bus Service,6,2013,3274
+Batavia Bus Service,7,2013,3417
+Batavia Bus Service,8,2013,3594
+Batavia Bus Service,9,2013,5143
+Batavia Bus Service,10,2013,6120
+Batavia Bus Service,11,2013,5265
+Batavia Bus Service,12,2013,4861
+Batavia Bus Service,1,2014,5012
+Batavia Bus Service,2,2014,5484
+Batavia Bus Service,3,2014,5371
+Livingston Area Transportation Service,4,2013,22191
+Livingston Area Transportation Service,5,2013,15528
+Livingston Area Transportation Service,6,2013,5999
+Livingston Area Transportation Service,7,2013,6023
+Livingston Area Transportation Service,8,2013,10772
+Livingston Area Transportation Service,9,2013,22366
+Livingston Area Transportation Service,10,2013,20868
+Livingston Area Transportation Service,11,2013,21358
+Livingston Area Transportation Service,12,2013,14908
+Livingston Area Transportation Service,1,2014,15473
+Livingston Area Transportation Service,2,2014,26846
+Livingston Area Transportation Service,3,2014,19956
+Orleans Transit Service,4,2013,3230
+Orleans Transit Service,5,2013,3230
+Orleans Transit Service,6,2013,2869
+Orleans Transit Service,7,2013,3308
+Orleans Transit Service,8,2013,3227
+Orleans Transit Service,9,2013,3071
+Orleans Transit Service,10,2013,3746
+Orleans Transit Service,11,2013,3305
+Orleans Transit Service,12,2013,3221
+Orleans Transit Service,1,2014,3440
+Orleans Transit Service,2,2014,3150
+Orleans Transit Service,3,2014,3167
+Seneca Transit Service,4,2013,7443
+Seneca Transit Service,5,2013,7459
+Seneca Transit Service,6,2013,6969
+Seneca Transit Service,7,2013,7768
+Seneca Transit Service,8,2013,7979
+Seneca Transit Service,9,2013,7468
+Seneca Transit Service,10,2013,8129
+Seneca Transit Service,11,2013,6946
+Seneca Transit Service,12,2013,7208
+Seneca Transit Service,1,2014,7594
+Seneca Transit Service,2,2014,7505
+Seneca Transit Service,3,2014,7285
+Wayne Area Transit Service,4,2013,18267
+Wayne Area Transit Service,5,2013,19382
+Wayne Area Transit Service,6,2013,16808
+Wayne Area Transit Service,7,2013,18766
+Wayne Area Transit Service,8,2013,22232
+Wayne Area Transit Service,9,2013,26394
+Wayne Area Transit Service,10,2013,26932
+Wayne Area Transit Service,11,2013,16090
+Wayne Area Transit Service,12,2013,16540
+Wayne Area Transit Service,1,2014,14760
+Wayne Area Transit Service,2,2014,14944
+Wayne Area Transit Service,3,2014,15720
+Wyoming Transit Service,4,2013,6465
+Wyoming Transit Service,5,2013,6486
+Wyoming Transit Service,6,2013,8315
+Wyoming Transit Service,7,2013,8117
+Wyoming Transit Service,8,2013,6327
+Wyoming Transit Service,9,2013,5401
+Wyoming Transit Service,10,2013,9432
+Wyoming Transit Service,11,2013,5104
+Wyoming Transit Service,12,2013,5054
+Wyoming Transit Service,1,2014,5485
+Wyoming Transit Service,2,2014,5829
+Wyoming Transit Service,3,2014,5597
+Regional Transit Service,4,2014,1477201
+Regional Transit Service,5,2014,1488303
+Regional Transit Service,6,2014,1296340
+Regional Transit Service,7,2014,1221377
+Regional Transit Service,8,2014,1190011
+Regional Transit Service,9,2014,1625932
+Regional Transit Service,10,2014,1690538
+Regional Transit Service,11,2014,1378233
+Regional Transit Service,12,2014,1476844
+Lift Line ,4,2014,15487
+Lift Line ,5,2014,15336
+Lift Line ,6,2014,14815
+Lift Line ,7,2014,15202
+Lift Line ,8,2014,14468
+Lift Line ,9,2014,15074
+Lift Line ,10,2014,17263
+Lift Line ,11,2014,14989
+Lift Line ,12,2014,14826
+Batavia Bus Service,4,2014,5733
+Batavia Bus Service,5,2014,4594
+Batavia Bus Service,6,2014,3880
+Batavia Bus Service,7,2014,3979
+Batavia Bus Service,8,2014,4027
+Batavia Bus Service,9,2014,5921
+Batavia Bus Service,10,2014,6096
+Batavia Bus Service,11,2014,4927
+Batavia Bus Service,12,2014,5255
+Livingston Area Transportation Service,4,2014,24997
+Livingston Area Transportation Service,5,2014,15512
+Livingston Area Transportation Service,6,2014,5708
+Livingston Area Transportation Service,7,2014,7830
+Livingston Area Transportation Service,8,2014,11530
+Livingston Area Transportation Service,9,2014,20928
+Livingston Area Transportation Service,10,2014,23033
+Livingston Area Transportation Service,11,2014,20433
+Livingston Area Transportation Service,12,2014,14581
+Orleans Transit Service,4,2014,3474
+Orleans Transit Service,5,2014,3591
+Orleans Transit Service,6,2014,3429
+Orleans Transit Service,7,2014,3694
+Orleans Transit Service,8,2014,3408
+Orleans Transit Service,9,2014,3376
+Orleans Transit Service,10,2014,3887
+Orleans Transit Service,11,2014,3089
+Orleans Transit Service,12,2014,3394
+Seneca Transit Service,4,2014,7761
+Seneca Transit Service,5,2014,7062
+Seneca Transit Service,6,2014,7399
+Seneca Transit Service,7,2014,7068
+Seneca Transit Service,8,2014,6868
+Seneca Transit Service,9,2014,7557
+Seneca Transit Service,10,2014,7718
+Seneca Transit Service,11,2014,6026
+Seneca Transit Service,12,2014,7056
+Wayne Area Transportation Service,4,2014,18673
+Wayne Area Transportation Service,5,2014,18115
+Wayne Area Transportation Service,6,2014,17484
+Wayne Area Transportation Service,7,2014,20542
+Wayne Area Transportation Service,8,2014,22730
+Wayne Area Transportation Service,9,2014,28589
+Wayne Area Transportation Service,10,2014,26124
+Wayne Area Transportation Service,11,2014,16307
+Wayne Area Transportation Service,12,2014,18247
+Wyoming Transportation Service,4,2014,5613
+Wyoming Transportation Service,5,2014,5224
+Wyoming Transportation Service,6,2014,7783
+Wyoming Transportation Service,7,2014,5801
+Wyoming Transportation Service,8,2014,5592
+Wyoming Transportation Service,9,2014,4796
+Wyoming Transportation Service,10,2014,7967
+Wyoming Transportation Service,11,2014,3772
+Wyoming Transportation Service,12,2014,4750
+Regional Transit Service,1,2015,1416986
+Regional Transit Service,2,2015,1325153
+Regional Transit Service,3,2015,1519999
+Regional Transit Service,4,2015,1583468
+Regional Transit Service,5,2015,1472835
+Regional Transit Service,6,2015,1349348
+Regional Transit Service,7,2015,1297609
+Regional Transit Service,8,2015,1224293
+Regional Transit Service,9,2015,1439396
+Regional Transit Service,10,2015,1497114
+Regional Transit Service,11,2015,1334207
+Regional Transit Service,12,2015,1377326
+RTS Access,1,2015,15548
+RTS Access,2,2015,14337
+RTS Access,3,2015,17116
+RTS Access,4,2015,16536
+RTS Access,5,2015,15428
+RTS Access,6,2015,16027
+RTS Access,7,2015,15977
+RTS Access,8,2015,15730
+RTS Access,9,2015,15789
+RTS Access,10,2015,17061
+RTS Access,11,2015,15628
+RTS Access,12,2015,16276
+RTS Genesee,1,2015,5684
+RTS Genesee,2,2015,6090
+RTS Genesee,3,2015,6572
+RTS Genesee,4,2015,6349
+RTS Genesee,5,2015,4573
+RTS Genesee,6,2015,3804
+RTS Genesee,7,2015,3695
+RTS Genesee,8,2015,4120
+RTS Genesee,9,2015,5590
+RTS Genesee,10,2015,5536
+RTS Genesee,11,2015,5079
+RTS Genesee,12,2015,4920
+RTS Livingston,1,2015,15166
+RTS Livingston,2,2015,26060
+RTS Livingston,3,2015,19736
+RTS Livingston,4,2015,24084
+RTS Livingston,5,2015,14094
+RTS Livingston,6,2015,5606
+RTS Livingston,7,2015,6478
+RTS Livingston,8,2015,6921
+RTS Livingston,9,2015,19815
+RTS Livingston,10,2015,22915
+RTS Livingston,11,2015,17142
+RTS Livingston,12,2015,16521
+RTS Ontario,1,2015,23826
+RTS Ontario,2,2015,27352
+RTS Ontario,3,2015,27121
+RTS Ontario,4,2015,25877
+RTS Ontario,5,2015,23885
+RTS Ontario,6,2015,23713
+RTS Ontario,7,2015,24353
+RTS Ontario,8,2015,23083
+RTS Ontario,9,2015,24476
+RTS Ontario,10,2015,24343
+RTS Ontario,11,2015,23322
+RTS Ontario,12,2015,24686
+RTS Orleans,1,2015,3194
+RTS Orleans,2,2015,3252
+RTS Orleans,3,2015,3864
+RTS Orleans,4,2015,3617
+RTS Orleans,5,2015,3014
+RTS Orleans,6,2015,3505
+RTS Orleans,7,2015,3586
+RTS Orleans,8,2015,3481
+RTS Orleans,9,2015,3328
+RTS Orleans,10,2015,3325
+RTS Orleans,11,2015,3155
+RTS Orleans,12,2015,3490
+RTS Seneca,1,2015,6225
+RTS Seneca,2,2015,5579
+RTS Seneca,3,2015,7004
+RTS Seneca,4,2015,6911
+RTS Seneca,5,2015,6426
+RTS Seneca,6,2015,6661
+RTS Seneca,7,2015,6750
+RTS Seneca,8,2015,6117
+RTS Seneca,9,2015,6412
+RTS Seneca,10,2015,5728
+RTS Seneca,11,2015,5408
+RTS Seneca,12,2015,6314
+RTS Wayne,1,2015,15538
+RTS Wayne,2,2015,14255
+RTS Wayne,3,2015,19444
+RTS Wayne,4,2015,19853
+RTS Wayne,5,2015,19265
+RTS Wayne,6,2015,20711
+RTS Wayne,7,2015,22450
+RTS Wayne,8,2015,20996
+RTS Wayne,9,2015,33114
+RTS Wayne,10,2015,29442
+RTS Wayne,11,2015,18257
+RTS Wayne,12,2015,19663
+RTS Wyoming,1,2015,4676
+RTS Wyoming,2,2015,4362
+RTS Wyoming,3,2015,4846
+RTS Wyoming,4,2015,4857
+RTS Wyoming,5,2015,4313
+RTS Wyoming,6,2015,8475
+RTS Wyoming,7,2015,5979
+RTS Wyoming,8,2015,5034
+RTS Wyoming,9,2015,4333
+RTS Wyoming,10,2015,9773
+RTS Wyoming,11,2015,4059
+RTS Wyoming,12,2015,4512
+Regional Transit Service,1,2016,1314964
+Regional Transit Service,2,2016,1290421
+Regional Transit Service,3,2016,1380720
+Regional Transit Service,4,2016,1316168
+Regional Transit Service,5,2016,1329560
+Regional Transit Service,6,2016,1244038
+Regional Transit Service,7,2016,1139124
+Regional Transit Service,8,2016,1233426
+Regional Transit Service,9,2016,1410707
+Regional Transit Service,10,2016,1417147
+Regional Transit Service,11,2016,1362136
+Regional Transit Service,12,2016,1349830
+RTS Access,1,2016,15587
+RTS Access,2,2016,15446
+RTS Access,3,2016,17335
+RTS Access,4,2016,16362
+RTS Access,5,2016,16047
+RTS Access,6,2016,15977
+RTS Access,7,2016,15273
+RTS Access,8,2016,16356
+RTS Access,9,2016,16218
+RTS Access,10,2016,16746
+RTS Access,11,2016,16717
+RTS Access,12,2016,16886
+RTS Genesee,1,2016,4319
+RTS Genesee,2,2016,5643
+RTS Genesee,3,2016,6126
+RTS Genesee,4,2016,6136
+RTS Genesee,5,2016,4882
+RTS Genesee,6,2016,4215
+RTS Genesee,7,2016,3799
+RTS Genesee,8,2016,5111
+RTS Genesee,9,2016,5980
+RTS Genesee,10,2016,6221
+RTS Genesee,11,2016,6183
+RTS Genesee,12,2016,5087
+RTS Livingston,1,2016,13757
+RTS Livingston,2,2016,22357
+RTS Livingston,3,2016,16977
+RTS Livingston,4,2016,22677
+RTS Livingston,5,2016,10668
+RTS Livingston,6,2016,5629
+RTS Livingston,7,2016,6138
+RTS Livingston,8,2016,8105
+RTS Livingston,9,2016,17713
+RTS Livingston,10,2016,18831
+RTS Livingston,11,2016,16041
+RTS Livingston,12,2016,14403
+RTS Ontario,1,2016,22226
+RTS Ontario,2,2016,24759
+RTS Ontario,3,2016,25674
+RTS Ontario,4,2016,22943
+RTS Ontario,5,2016,21954
+RTS Ontario,6,2016,22107
+RTS Ontario,7,2016,20478
+RTS Ontario,8,2016,22224
+RTS Ontario,9,2016,21764
+RTS Ontario,10,2016,22141
+RTS Ontario,11,2016,20758
+RTS Ontario,12,2016,21133
+RTS Orleans,1,2016,3179
+RTS Orleans,2,2016,3183
+RTS Orleans,3,2016,3505
+RTS Orleans,4,2016,3146
+RTS Orleans,5,2016,3014
+RTS Orleans,6,2016,3256
+RTS Orleans,7,2016,3006
+RTS Orleans,8,2016,3616
+RTS Orleans,9,2016,3610
+RTS Orleans,10,2016,3721
+RTS Orleans,11,2016,3902
+RTS Orleans,12,2016,3613
+RTS Seneca,1,2016,5594
+RTS Seneca,2,2016,5618
+RTS Seneca,3,2016,6189
+RTS Seneca,4,2016,5864
+RTS Seneca,5,2016,5802
+RTS Seneca,6,2016,6512
+RTS Seneca,7,2016,5666
+RTS Seneca,8,2016,6236
+RTS Seneca,9,2016,6327
+RTS Seneca,10,2016,6249
+RTS Seneca,11,2016,5301
+RTS Seneca,12,2016,5402
+RTS Wayne,1,2016,16111
+RTS Wayne,2,2016,15994
+RTS Wayne,3,2016,17059
+RTS Wayne,4,2016,17671
+RTS Wayne,5,2016,18333
+RTS Wayne,6,2016,18465
+RTS Wayne,7,2016,17746
+RTS Wayne,8,2016,20716
+RTS Wayne,9,2016,31227
+RTS Wayne,10,2016,26995
+RTS Wayne,11,2016,17344
+RTS Wayne,12,2016,16170
+RTS Wyoming,1,2016,4045
+RTS Wyoming,2,2016,4244
+RTS Wyoming,3,2016,4664
+RTS Wyoming,4,2016,4042
+RTS Wyoming,5,2016,3722
+RTS Wyoming,6,2016,8247
+RTS Wyoming,7,2016,4241
+RTS Wyoming,8,2016,5156
+RTS Wyoming,9,2016,3610
+RTS Wyoming,10,2016,4634
+RTS Wyoming,11,2016,3578
+RTS Wyoming,12,2016,3652
+Regional Transit Service,1,2017,1342382
+Regional Transit Service,2,2017,1272704
+Regional Transit Service,3,2017,1357480
+Regional Transit Service,4,2017,1223561
+Regional Transit Service,5,2017,1358231
+Regional Transit Service,6,2017,1201029
+Regional Transit Service,7,2017,1077698
+Regional Transit Service,8,2017,1158650
+Regional Transit Service,9,2017,1310788
+Regional Transit Service,10,2017,1363630
+Regional Transit Service,11,2017,1268388
+Regional Transit Service,12,2017,1190478
+RTS Access,1,2017,17272
+RTS Access,2,2017,16809
+RTS Access,3,2017,17977
+RTS Access,4,2017,17991
+RTS Access,5,2017,19086
+RTS Access,6,2017,17990
+RTS Access,7,2017,16020
+RTS Access,8,2017,18241
+RTS Access,9,2017,17628
+RTS Access,10,2017,18828
+RTS Access,11,2017,17442
+RTS Access,12,2017,17131
+RTS Genesee,1,2017,5376
+RTS Genesee,2,2017,6484
+RTS Genesee,3,2017,6823
+RTS Genesee,4,2017,6362
+RTS Genesee,5,2017,7035
+RTS Genesee,6,2017,4811
+RTS Genesee,7,2017,4126
+RTS Genesee,8,2017,5567
+RTS Genesee,9,2017,5794
+RTS Genesee,10,2017,6054
+RTS Genesee,11,2017,5220
+RTS Genesee,12,2017,4575
+RTS Livingston,1,2017,13318
+RTS Livingston,2,2017,19160
+RTS Livingston,3,2017,15602
+RTS Livingston,4,2017,20584
+RTS Livingston,5,2017,9858
+RTS Livingston,6,2017,5610
+RTS Livingston,7,2017,5713
+RTS Livingston,8,2017,8289
+RTS Livingston,9,2017,16954
+RTS Livingston,10,2017,17412
+RTS Livingston,11,2017,15406
+RTS Livingston,12,2017,12344
+RTS Ontario,1,2017,21859
+RTS Ontario,2,2017,23246
+RTS Ontario,3,2017,24555
+RTS Ontario,4,2017,21158
+RTS Ontario,5,2017,22025
+RTS Ontario,6,2017,22975
+RTS Ontario,7,2017,21657
+RTS Ontario,8,2017,20994
+RTS Ontario,9,2017,20053
+RTS Ontario,10,2017,22155
+RTS Ontario,11,2017,21227
+RTS Ontario,12,2017,20590
+RTS Orleans,1,2017,3624
+RTS Orleans,2,2017,3823
+RTS Orleans,3,2017,3870
+RTS Orleans,4,2017,3500
+RTS Orleans,5,2017,4127
+RTS Orleans,6,2017,4063
+RTS Orleans,7,2017,3856
+RTS Orleans,8,2017,4266
+RTS Orleans,9,2017,2841
+RTS Orleans,10,2017,3115
+RTS Orleans,11,2017,3028
+RTS Orleans,12,2017,2767
+RTS Seneca,1,2017,5580
+RTS Seneca,2,2017,5561
+RTS Seneca,3,2017,6148
+RTS Seneca,4,2017,5654
+RTS Seneca,5,2017,6341
+RTS Seneca,6,2017,5998
+RTS Seneca,7,2017,5370
+RTS Seneca,8,2017,5283
+RTS Seneca,9,2017,5290
+RTS Seneca,10,2017,5544
+RTS Seneca,11,2017,4809
+RTS Seneca,12,2017,4593
+RTS Wayne,1,2017,16384
+RTS Wayne,2,2017,15390
+RTS Wayne,3,2017,17162
+RTS Wayne,4,2017,16504
+RTS Wayne,5,2017,18745
+RTS Wayne,6,2017,19321
+RTS Wayne,7,2017,17789
+RTS Wayne,8,2017,20860
+RTS Wayne,9,2017,33368
+RTS Wayne,10,2017,26329
+RTS Wayne,11,2017,17753
+RTS Wayne,12,2017,15378
+RTS Wyoming,1,2017,3930
+RTS Wyoming,2,2017,3806
+RTS Wyoming,3,2017,3990
+RTS Wyoming,4,2017,4781
+RTS Wyoming,5,2017,3669
+RTS Wyoming,6,2017,5411
+RTS Wyoming,7,2017,3058
+RTS Wyoming,8,2017,3667
+RTS Wyoming,9,2017,3057
+RTS Wyoming,10,2017,5070
+RTS Wyoming,11,2017,3131
+RTS Wyoming,12,2017,3043
