@@ -1,4 +1,26 @@
+# Convert all CSV files to TSV
 csv2tsv MortalityFertilityIncome.csv > Midterm_Files/Mortality.tsv
 csv2tsv globalterrorismdb_0718dist.csv > Midterm_Files/Terrorism.tsv
 csv2tsv public-education-expenditure-as-share-of-gdp.csv > Midterm_Files/Education.tsv
 tsv-join -z --filter-file ./Midterm_Files/Mortality.tsv --header --key-fields 1 --append-fields 4 ./Midterm_Files/Education.tsv > ./Midterm_Files/Combine_Ed_Mort.tsv
+
+# Print available TSV files, ask how many user would like to compare
+echo "Files available: "
+for file in $ls ./Midterm_Files/*
+do
+	echo $file
+done
+
+# Join TSV files that user would like to compare
+read -p "Which file would you like to look at first: [M]ortality, [T]errorism, [E]ducation, [D]one ? " file_1
+
+if ["$file_1" = "D"]; then
+	:
+else
+	echo "Which file would you like to compare?"
+	read -p "[M]ortality, [T]errorism, [E]ducation, [D]one ? " file_2
+	if ["$file_2" = "D"]; then
+		:
+	else
+		echo "Would you like to compare a third file?"
+		read -p "[M]ortality, [T]errorism, [E]ducation, [D]one ? " file_3
