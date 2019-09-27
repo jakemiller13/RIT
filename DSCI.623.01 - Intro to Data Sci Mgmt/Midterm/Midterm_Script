@@ -6,21 +6,28 @@ tsv-join -z --filter-file ./Midterm_Files/Mortality.tsv --header --key-fields 1 
 
 # Print available TSV files, ask how many user would like to compare
 echo "Files available: "
+IFS="/"
+file_array=()
 for file in $ls ./Midterm_Files/*
 do
-	echo $file
+	read -ra name <<< "$file"
+	file_name=${name[${#name[@]}-1]}
+	echo $file_name
+	file_array+=($file_name)
 done
+IFS=" "
 
 # Join TSV files that user would like to compare
-read -p "Which file would you like to look at first: [M]ortality, [T]errorism, [E]ducation, [D]one ? " file_1
-
-if ["$file_1" = "D"]; then
-	:
+read -p "Which file would you like to look at first: ${file_array[*]} [M]ortality, [T]errorism, [E]ducation, [D]one ? " file_1
+if [ "$file_1" == "D" ]; then
+	echo "Done"
 else
 	echo "Which file would you like to compare?"
 	read -p "[M]ortality, [T]errorism, [E]ducation, [D]one ? " file_2
-	if ["$file_2" = "D"]; then
-		:
+	if [ "$file_2" == "D" ]; then
+		echo "Done"
 	else
 		echo "Would you like to compare a third file?"
 		read -p "[M]ortality, [T]errorism, [E]ducation, [D]one ? " file_3
+	fi
+fi
