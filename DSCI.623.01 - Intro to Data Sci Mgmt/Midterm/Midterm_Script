@@ -4,30 +4,71 @@ csv2tsv globalterrorismdb_0718dist.csv > Midterm_Files/Terrorism.tsv
 csv2tsv public-education-expenditure-as-share-of-gdp.csv > Midterm_Files/Education.tsv
 tsv-join -z --filter-file ./Midterm_Files/Mortality.tsv --header --key-fields 1 --append-fields 4 ./Midterm_Files/Education.tsv > ./Midterm_Files/Combine_Ed_Mort.tsv
 
-# Print available TSV files, ask how many user would like to compare
+# Print available TSV files to compare
 echo "Files available: "
 IFS="/"
 file_array=()
-for file in $ls ./Midterm_Files/*
-do
+file_names=()
+for file in $ls ./Midterm_Files/*; do
 	read -ra name <<< "$file"
-	file_name=${name[${#name[@]}-1]}
-	echo $file_name
-	file_array+=($file_name)
+	spl_name=${name[${#name[@]}-1]}
+	file_array+=($spl_name)
+	file_name=[${spl_name:0:1}]${spl_name:1:${#spl_name}-5}
+	file_names+=($file_name)
 done
+echo ${file_names[@]} [D]one
 IFS=" "
 
-# Join TSV files that user would like to compare
-read -p "Which file would you like to look at first: ${file_array[*]} [M]ortality, [T]errorism, [E]ducation, [D]one ? " file_1
-if [ "$file_1" == "D" ]; then
+# First file to compare
+read -p "Which file would you like to use as base? " file_1
+
+# Remove requested file from file_names
+if [ "$file_1" = "D" ]; then
+	file_1=
 	echo "Done"
 else
-	echo "Which file would you like to compare?"
-	read -p "[M]ortality, [T]errorism, [E]ducation, [D]one ? " file_2
+	for file in "${!file_names[@]}"; do
+		if [ "${file_names[file]:1:1}" = "$file_1" ]; then
+			unset "file_names[file]"
+			file_1=${file_array[file]}
+		fi
+	done
+
+	# Second file to compare
+	echo "Files available: "
+	echo ${file_names[@]} [D]one
+
+	read -p "Which file would you like to compare? " file_2
 	if [ "$file_2" == "D" ]; then
+		file_2=
 		echo "Done"
 	else
-		echo "Would you like to compare a third file?"
-		read -p "[M]ortality, [T]errorism, [E]ducation, [D]one ? " file_3
+		for file in "${!file_names[@]}"; do
+			if [ "${file_names[file]:1:1}" = "$file_2" ]; then
+				unset "file_names[file]"
+				file_2=${file_array[file]}
+			fi
+		done
+
+		# Third file to compare
+		echo "Files available: "
+		echo ${file_names[@]} [D]one
+
+		read -p "Would you like to compare a third file? " file_3
+		if [ "$file_3" == "D" ]; then
+			file_3=
+			echo "Done"
+		else
+			for file in "${!file_names[@]}"; do
+				if [ "${file_names[file]:1:1}" = "$file_3" ]; then
+					unset "file_names[file]"
+				file_3=${file_array[file]}
+				fi
+			done
+		fi
 	fi
 fi
+
+echo $file_1 $file_2 $file_3 "||" ${file_array[@]} "||" ${file_names[@]}
+
+tsv-join -z --filter-file ./Midterm_Files/${file_2} --header --key-fields 1 --append-fields 4 ./Midterm_Files/${file_1} > ./Midterm_Files/Com_"${file_2:0:3}"_"${file_1:0:3}".tsv
