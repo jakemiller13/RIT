@@ -1,15 +1,37 @@
-# Convert all CSV files to TSV
-csv2tsv MortalityFertilityIncome.csv > Midterm_Files/Mortality.tsv
-csv2tsv globalterrorismdb_0718dist.csv > Midterm_Files/Terrorism.tsv
-csv2tsv public-education-expenditure-as-share-of-gdp.csv > Midterm_Files/Education.tsv
-tsv-join -z --filter-file ./Midterm_Files/Mortality.tsv --header --key-fields 1 --append-fields 4 ./Midterm_Files/Education.tsv > ./Midterm_Files/Combine_Ed_Mort.tsv
+# Education file used:
+# https://www.kaggle.com/mylesoneill/world-university-rankings#education_expenditure_supplementary_data.csv
+
+##### CREATE A TEMP FOLDER FOR THESE FILES, OR SAVE FINAL FILES IN MAIN FOLDER
+
+# Convert all CSV files to TSV and save in Temp_Files
+csv2tsv Raw_Data/MortalityFertilityIncome.csv > Temp_Files/tsv_MortFertInc.tsv
+csv2tsv Raw_Data/globalterrorismdb_0718dist.csv > Temp_Files/tsv_Terrorism.tsv
+csv2tsv Raw_Data/education_expenditure_supplementary_data.csv > Temp_Files/tsv_Education.tsv
+
+# Education: check for consistency in entries, note extra space in "All Institutions "
+echo "Check for typos:"
+tsv-summarize --header --group-by 2 --count Temp_Files/tsv_Education.tsv
+tsv-summarize --header --group-by 3 --count Temp_Files/tsv_Education.tsv
+
+# Education: only take Public, All Institutions, after 2000
+tsv-filter --header --str-eq 2:"All Institutions " --str-eq 3:"Public" < Temp_Files/tsv_Education.tsv | cut -f 1,5-11 > Cleaned_Data/Education.tsv
+
+# MortFertInc: Remove m/f/i prefix from date column titles
+sed -E "1 s/(m|f|i)1/1/g" < Temp_Files/tsv_MortFertInc.tsv | sed -E "1 s/(m|f|i)2/2/g" > Temp_Files/tsv_Fixed_Dates.tsv
+
+# M/F/I: Separate into Mortality, Fertility, Income files, after 2000
+cut -f 1,34-50 Temp_Files/tsv_Fixed_Dates.tsv > Temp_Files/tsv_Mortality.tsv
+cut -f 1,81-97 Temp_Files/tsv_Fixed_Dates.tsv > Temp_Files/tsv_Fertility.tsv
+cut -f 1,128-144 Temp_Files/tsv_Fixed_Dates.tsv > Temp_Files/tsv_Income.tsv
+
+##### Need to swap commas with periods #####
 
 # Print available TSV files to compare
 echo "Files available: "
 IFS="/"
 file_array=()
 file_names=()
-for file in $ls ./Midterm_Files/*; do
+for file in $ls ./Cleaned_Data/*; do
 	read -ra name <<< "$file"
 	spl_name=${name[${#name[@]}-1]}
 	file_array+=($spl_name)
@@ -18,6 +40,11 @@ for file in $ls ./Midterm_Files/*; do
 done
 echo ${file_names[@]} [D]one
 IFS=" "
+
+# Country columns
+Mor=1
+Edu=1
+Ter=8
 
 # First file to compare
 read -p "Which file would you like to use as base? " file_1
@@ -29,10 +56,18 @@ if [ "$file_1" = "D" ]; then
 else
 	for file in "${!file_names[@]}"; do
 		if [ "${file_names[file]:1:1}" = "$file_1" ]; then
+			file_col="$file_1"
 			unset "file_names[file]"
 			file_1=${file_array[file]}
 		fi
 	done
+
+	# Mortality/Education country column = 1, Terrorism = 8
+	if [ "$file_col" = "M" ] || [ "$file_col" = "E" ]; then
+		col=1
+	else
+		col=8
+	fi
 
 	# Second file to compare
 	echo "Files available: "
@@ -49,6 +84,8 @@ else
 				file_2=${file_array[file]}
 			fi
 		done
+
+##### HAVE NOT ACCOUNTED FOR ADDING THIRD FILE TO JOIN
 
 		# Third file to compare
 		echo "Files available: "
@@ -69,6 +106,8 @@ else
 	fi
 fi
 
-echo $file_1 $file_2 $file_3 "||" ${file_array[@]} "||" ${file_names[@]}
+echo $file_col "||" $file_1 $file_2 $file_3 "||" ${file_array[@]} "||" ${file_names[@]}
 
-tsv-join -z --filter-file ./Midterm_Files/${file_2} --header --key-fields 1 --append-fields 4 ./Midterm_Files/${file_1} > ./Midterm_Files/Com_"${file_2:0:3}"_"${file_1:0:3}".tsv
+##### STILL NEED TO DECIDE WHICH COLUMNS TO APPEND
+# Join desired files
+tsv-join -z --filter-file ./Cleaned_Data/${file_2} --header --key-fields $col --append-fields 4 ./Cleaned_Data/${file_1} > ./Cleaned_Data/Com_"${file_2:0:3}"_"${file_1:0:3}".tsv
