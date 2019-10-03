@@ -1,12 +1,10 @@
 # Education file used:
 # https://www.kaggle.com/mylesoneill/world-university-rankings#education_expenditure_supplementary_data.csv
 
-##### CREATE A TEMP FOLDER FOR THESE FILES, OR SAVE FINAL FILES IN MAIN FOLDER
-
 # Convert all CSV files to TSV and save in Temp_Files
+csv2tsv Raw_Data/education_expenditure_supplementary_data.csv > Temp_Files/tsv_Education.tsv
 csv2tsv Raw_Data/MortalityFertilityIncome.csv > Temp_Files/tsv_MortFertInc.tsv
 csv2tsv Raw_Data/globalterrorismdb_0718dist.csv > Temp_Files/tsv_Terrorism.tsv
-csv2tsv Raw_Data/education_expenditure_supplementary_data.csv > Temp_Files/tsv_Education.tsv
 
 # Education: check for consistency in entries, note extra space in "All Institutions "
 echo "Check for typos:"
@@ -16,15 +14,31 @@ tsv-summarize --header --group-by 3 --count Temp_Files/tsv_Education.tsv
 # Education: only take Public, All Institutions, after 2000
 tsv-filter --header --str-eq 2:"All Institutions " --str-eq 3:"Public" < Temp_Files/tsv_Education.tsv | cut -f 1,5-11 > Cleaned_Data/Education.tsv
 
-# MortFertInc: Remove m/f/i prefix from date column titles
-sed -E "1 s/(m|f|i)1/1/g" < Temp_Files/tsv_MortFertInc.tsv | sed -E "1 s/(m|f|i)2/2/g" > Temp_Files/tsv_Fixed_Dates.tsv
+# MortFertInc: Swap commas for periods, remove m/f/i prefix from date column titles
+sed -E "s/,/./g" < Temp_Files/tsv_MortFertInc.tsv | sed -E "1 s/(m|f|i)1/1/g" | sed -E "1 s/(m|f|i)2/2/g" > Temp_Files/tsv_MFI_Fixed_Dates.tsv
 
 # M/F/I: Separate into Mortality, Fertility, Income files, after 2000
-cut -f 1,34-50 Temp_Files/tsv_Fixed_Dates.tsv > Temp_Files/tsv_Mortality.tsv
-cut -f 1,81-97 Temp_Files/tsv_Fixed_Dates.tsv > Temp_Files/tsv_Fertility.tsv
-cut -f 1,128-144 Temp_Files/tsv_Fixed_Dates.tsv > Temp_Files/tsv_Income.tsv
+cut -f 1,34-50 Temp_Files/tsv_MFI_Fixed_Dates.tsv > Temp_Files/tsv_Mortality.tsv
+cut -f 1,81-97 Temp_Files/tsv_MFI_Fixed_Dates.tsv > Temp_Files/tsv_Fertility.tsv
+cut -f 1,128-144 Temp_Files/tsv_MFI_Fixed_Dates.tsv > Temp_Files/tsv_Income.tsv
 
-##### Need to swap commas with periods #####
+# Terrorism: take columns iyear, country_txt, success. Move country_txt to first column
+tsv-filter --header --str-eq 27:1 < Temp_Files/tsv_Terrorism.tsv | tsv-select -f 9,2,27 > Temp_Files/tsv_TerrorSimple.tsv
+
+# Terrorism: group by country, incidences per year, for years after 2000
+tsv-summarize --header --group-by 1,2 --count < Temp_Files/tsv_TerrorSimple.tsv | tsv-filter --header --ge 2:2000 > Temp_Files/Terrorism.tsv
+
+# Terrorism: create countries.txt and years.txt file
+tsv-summarize --header --unique-values 1 Temp_Files/Terrorism.tsv | tr "|" "\n" > countries.tsv
+tsv-summarize --header --unique-values 2 Temp_Files/Terrorism.tsv | tr "|" "\n" > years.tsv
+
+# Search through Terrorism.tsv for country/year combination
+##### NOT WORKING WITH COUNTRIES WITH SPACES
+while read country; do
+	while read year; do
+		tsv-filter --str-eq 1:"$country" --str-eq 2:"$year" Temp_Files/Terrorism.tsv
+	done < years.tsv
+done < countries.tsv
 
 # Print available TSV files to compare
 echo "Files available: "
@@ -40,11 +54,6 @@ for file in $ls ./Cleaned_Data/*; do
 done
 echo ${file_names[@]} [D]one
 IFS=" "
-
-# Country columns
-Mor=1
-Edu=1
-Ter=8
 
 # First file to compare
 read -p "Which file would you like to use as base? " file_1
