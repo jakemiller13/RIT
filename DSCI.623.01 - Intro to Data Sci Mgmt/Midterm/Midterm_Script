@@ -53,7 +53,6 @@ for country in `echo "${countries[@]}"`; do
 			terror_counts+=(0)
 		fi
 	done
-	echo ${terror_counts[*]}
 	echo ${terror_counts[*]} >> Temp_Files/TerrorSpace.tsv
 done
 IFS=" "
@@ -82,7 +81,7 @@ read -p "Which file would you like to use as base? " file_1
 # Remove requested file from file_names
 if [ "$file_1" = "D" ]; then
 	file_1=
-	echo "Done"
+	echo "Exiting"
 else
 	for file in "${!file_names[@]}"; do
 		if [ "${file_names[file]:1:1}" = "$file_1" ]; then
@@ -107,8 +106,6 @@ else
 			fi
 		done
 
-##### HAVE NOT ACCOUNTED FOR ADDING THIRD FILE TO JOIN
-
 		# Third file to compare
 		echo "Files available: "
 		echo ${file_names[@]} [D]one
@@ -128,11 +125,16 @@ else
 	fi
 fi
 
-echo $file_1 $file_2 $file_3 "||" ${file_array[@]} "||" ${file_names[@]}
-
-##### STILL NEED TO DECIDE WHICH COLUMNS TO APPEND
-# Join desired files
-tsv-join -z --filter-file ./Cleaned_Data/${file_2} --header --key-fields 1 --append-fields 2 Cleaned_Data/${file_1} > Combined_Files/Com_"${file_2:0:3}"_"${file_1:0:3}".tsv
+# File name depends on how many files user would like joined
+if [ -n "$file_3" ]; then
+	file_name="${file_2:0:3}_${file_1:0:3}_${file_3:0:3}"
+	tsv-join -z --filter-file ./Cleaned_Data/${file_2} --header --key-fields 1 Cleaned_Data/${file_1} Cleaned_Data/${file_3} > Combined_Files/"$file_name".tsv
+elif [ -n "$file_2" ]; then
+	file_name="${file_2:0:3}_${file_1:0:3}"
+	tsv-join -z --filter-file ./Cleaned_Data/${file_2} --header --key-fields 1 Cleaned_Data/${file_1} > Combined_Files/"$file_name".tsv
+else
+	echo "No files selected to join"
+fi
 
 # Remove created directors
 rm -iR Temp_Files
