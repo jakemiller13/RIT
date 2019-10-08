@@ -16,28 +16,31 @@ echo "Check for typos:"
 tsv-summarize --header --group-by 2 --count Temp_Files/tsv_Education.tsv
 tsv-summarize --header --group-by 3 --count Temp_Files/tsv_Education.tsv
 
+# Education: remove random extra beginning spaces
+sed -E "s/^[[:space:]]+//g" Temp_Files/tsv_Education.tsv > Temp_Files/noSpaceEdu.tsv
+
 # Education: only take Public, All Institutions, after 2000
-tsv-filter --header --str-eq 2:"All Institutions " --str-eq 3:"Public" < Temp_Files/tsv_Education.tsv | cut -f 1,5-11 > Cleaned_Data/Education.tsv
+tsv-filter --header --str-eq 2:"All Institutions " --str-eq 3:"Public" < Temp_Files/noSpaceEdu.tsv | cut -f 1,5-11 > Cleaned_Data/Education.tsv
 
 # M/F/I: Swap commas for periods, remove m/f/i prefix from date column titles
-sed -E "s/,/./g" < Temp_Files/tsv_MortFertInc.tsv | sed -E "1 s/(m|f|i)1/1/g" | sed -E "1 s/(m|f|i)2/2/g" > Temp_Files/tsv_MFI_Fixed_Dates.tsv
+sed -E "s/,/./g" < Temp_Files/tsv_MortFertInc.tsv | sed -E "1 s/(m|f|i)1/1/g" | sed -E "1 s/(m|f|i)2/2/g" > Temp_Files/noPreMortFertInc.tsv
 
 # M/F/I: Separate into Mortality, Fertility, Income files, after 2000
-cut -f 1,34-50 Temp_Files/tsv_MFI_Fixed_Dates.tsv > Cleaned_Data/Mortality.tsv
-cut -f 1,81-97 Temp_Files/tsv_MFI_Fixed_Dates.tsv > Cleaned_Data/Fertility.tsv
-cut -f 1,128-144 Temp_Files/tsv_MFI_Fixed_Dates.tsv > Cleaned_Data/Income.tsv
+cut -f 1,34-50 Temp_Files/noPreMortFertInc.tsv > Cleaned_Data/Mortality.tsv
+cut -f 1,81-97 Temp_Files/noPreMortFertInc.tsv > Cleaned_Data/Fertility.tsv
+cut -f 1,128-144 Temp_Files/noPreMortFertInc.tsv > Cleaned_Data/Income.tsv
 
 # Terrorism: take columns iyear, country_txt, success. Move country_txt to first column
-tsv-filter --header --str-eq 27:1 < Temp_Files/tsv_Terrorism.tsv | tsv-select -f 9,2,27 > Temp_Files/tsv_TerrorSimple.tsv
+tsv-filter --header --str-eq 27:1 < Temp_Files/tsv_Terrorism.tsv | tsv-select -f 9,2,27 > Temp_Files/sortTerror.tsv
 
 # Terrorism: group by country, incidences per year, for years after 2000
-tsv-summarize --header --group-by 1,2 --count < Temp_Files/tsv_TerrorSimple.tsv | tsv-filter --header --ge 2:2000 > Temp_Files/TerrorCut.tsv
+tsv-summarize --header --group-by 1,2 --count < Temp_Files/sortTerror.tsv | tsv-filter --header --ge 2:2000 > Temp_Files/groupTerror.tsv
 
 # Terrorism: create countries and years arrays, tail portion takes everything but header
-countries=( $(tsv-summarize --header --unique-values 1 < Temp_Files/TerrorCut.tsv | tail -n +2) )
-years=( $(tsv-summarize --header --unique-values 2 < Temp_Files/TerrorCut.tsv | tail -n +2) )
+countries=( $(tsv-summarize --header --unique-values 1 < Temp_Files/groupTerror.tsv | tail -n +2) )
+years=( $(tsv-summarize --header --unique-values 2 < Temp_Files/groupTerror.tsv | tail -n +2) )
 
-# Terrorism: search TerrorCut.tsv for country/year combination and add to file
+# Terrorism: search groupTerror.tsv for country/year combination and add to file
 IFS="|"
 mkfile b Temp_Files/TerrorSpace.tsv
 echo "Country ${years[@]}" | sed "s/|/ /g" >> Temp_Files/TerrorSpace.tsv
@@ -45,9 +48,9 @@ echo --- Compiling ---
 for country in `echo "${countries[@]}"`; do
 	terror_counts=("$country")
 	for year in `echo "${years[@]}"`; do
-		if [ -n "$(tsv-filter --str-eq 1:"$country" --str-eq 2:"$year" < Temp_Files/TerrorCut.tsv)" ]; then
+		if [ -n "$(tsv-filter --str-eq 1:"$country" --str-eq 2:"$year" < Temp_Files/groupTerror.tsv)" ]; then
 			# echo "$year" "$country" --Not-- Empty
-			terror_counts+=( $( tsv-filter --str-eq 1:"${country}" --str-eq 2:"${year}" < Temp_Files/TerrorCut.tsv | cut -f 3) )
+			terror_counts+=( $( tsv-filter --str-eq 1:"${country}" --str-eq 2:"${year}" < Temp_Files/groupTerror.tsv | cut -f 3) )
 		else
 			# echo "$year $country Empty"
 			terror_counts+=(0)
@@ -137,6 +140,7 @@ else
 fi
 
 # Remove created directors
+echo --Deleting Temporary Files--
 rm -iR Temp_Files
 rm -iR Cleaned_Data
 rm -iR Combined_Files
