@@ -23,7 +23,7 @@ sed -E "s/^[[:space:]]+//g" Temp_Files/tsv_Education.tsv > Temp_Files/noSpaceEdu
 tsv-filter --header --str-eq 2:"All Institutions " --str-eq 3:"Public" < Temp_Files/noSpaceEdu.tsv | cut -f 1,5-11 > Cleaned_Data/Education.tsv
 
 # M/F/I: Swap commas for periods, remove m/f/i prefix from date column titles
-sed -E "s/,/./g" < Temp_Files/tsv_MortFertInc.tsv | sed -E "1 s/(m|f|i)1/1/g" | sed -E "1 s/(m|f|i)2/2/g" > Temp_Files/noPreMortFertInc.tsv
+sed -E "s/,/./g" < Temp_Files/tsv_MortFertInc.tsv | sed -E "1 s/(m|f|i)2/2/g" > Temp_Files/noPreMortFertInc.tsv
 
 # M/F/I: Separate into Mortality, Fertility, Income files, after 2000
 cut -f 1,34-50 Temp_Files/noPreMortFertInc.tsv > Cleaned_Data/Mortality.tsv
