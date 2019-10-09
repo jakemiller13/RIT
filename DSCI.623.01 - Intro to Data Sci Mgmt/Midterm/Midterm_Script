@@ -1,74 +1,78 @@
-# Education file used:
+# Datasets used:
 # https://www.kaggle.com/mylesoneill/world-university-rankings#education_expenditure_supplementary_data.csv
+# https://www.kaggle.com/burhanykiyakoglu/infant-mortality-fertility-income
+# https://www.kaggle.com/START-UMD/gtd
 
-# Make relevant directories
-mkdir Temp_Files
-mkdir Cleaned_Data
-mkdir Combined_Files
+# Check if user needs to clean/compile files, else skip all cleansing
+read -p "Do you need to compile clean data files [y/n]? " compile
 
-# Convert all CSV files to TSV and save in Temp_Files
-csv2tsv Raw_Data/education_expenditure_supplementary_data.csv > Temp_Files/tsv_Education.tsv
-csv2tsv Raw_Data/MortalityFertilityIncome.csv > Temp_Files/tsv_MortFertInc.tsv
-csv2tsv Raw_Data/globalterrorismdb_0718dist.csv > Temp_Files/tsv_Terrorism.tsv
+# Only run all of this if user needs to
+if [ "$compile" = "y" ]; then
 
-# Education: check for consistency in entries, note extra space in "All Institutions "
-echo "Check for typos:"
-tsv-summarize --header --group-by 2 --count Temp_Files/tsv_Education.tsv
-tsv-summarize --header --group-by 3 --count Temp_Files/tsv_Education.tsv
+	# Make relevant directories
+	mkdir Temp_Files
+	mkdir Cleaned_Data
+	mkdir Combined_Files
 
-# Education: remove random extra beginning spaces
-sed -E "s/^[[:space:]]+//g" Temp_Files/tsv_Education.tsv > Temp_Files/noSpaceEdu.tsv
+	# Convert all CSV files to TSV and save in Temp_Files
+	csv2tsv Raw_Data/education_expenditure_supplementary_data.csv > Temp_Files/tsv_Education.tsv
+	csv2tsv Raw_Data/MortalityFertilityIncome.csv > Temp_Files/tsv_MortFertInc.tsv
+	csv2tsv Raw_Data/globalterrorismdb_0718dist.csv > Temp_Files/tsv_Terrorism.tsv
 
-# Education: only take Public, All Institutions, after 2000
-tsv-filter --header --str-eq 2:"All Institutions " --str-eq 3:"Public" < Temp_Files/noSpaceEdu.tsv | cut -f 1,5-11 > Cleaned_Data/Education.tsv
+	# Education: remove random extra beginning spaces
+	sed -E "s/^[[:space:]]+//g" Temp_Files/tsv_Education.tsv > Temp_Files/noSpaceEdu.tsv
 
-# M/F/I: Swap commas for periods, remove m/f/i prefix from date column titles
-sed -E "s/,/./g" < Temp_Files/tsv_MortFertInc.tsv | sed -E "1 s/(m|f|i)2/2/g" > Temp_Files/noPreMortFertInc.tsv
+	# Education: only take Public, All Institutions, after 2000
+	tsv-filter --header --str-eq 2:"All Institutions " --str-eq 3:"Public" < Temp_Files/noSpaceEdu.tsv | cut -f 1,5-11 > Cleaned_Data/Education.tsv
 
-# M/F/I: Separate into Mortality, Fertility, Income files, after 2000
-cut -f 1,34-50 Temp_Files/noPreMortFertInc.tsv > Cleaned_Data/Mortality.tsv
-cut -f 1,81-97 Temp_Files/noPreMortFertInc.tsv > Cleaned_Data/Fertility.tsv
-cut -f 1,128-144 Temp_Files/noPreMortFertInc.tsv > Cleaned_Data/Income.tsv
+	# M/F/I: Swap commas for periods, remove m/f/i prefix from date column titles
+	sed -E "s/,/./g" < Temp_Files/tsv_MortFertInc.tsv | sed -E "1 s/(m|f|i)2/2/g" > Temp_Files/noPreMortFertInc.tsv
 
-# Terrorism: take columns iyear, country_txt, success. Move country_txt to first column
-tsv-filter --header --str-eq 27:1 < Temp_Files/tsv_Terrorism.tsv | tsv-select -f 9,2,27 > Temp_Files/sortTerror.tsv
+	# M/F/I: Separate into Mortality, Fertility, Income files, after 2000
+	cut -f 1,34-50 Temp_Files/noPreMortFertInc.tsv > Cleaned_Data/Mortality.tsv
+	cut -f 1,81-97 Temp_Files/noPreMortFertInc.tsv > Cleaned_Data/Fertility.tsv
+	cut -f 1,128-144 Temp_Files/noPreMortFertInc.tsv > Cleaned_Data/Income.tsv
 
-# Terrorism: group by country, incidences per year, for years after 2000
-tsv-summarize --header --group-by 1,2 --count < Temp_Files/sortTerror.tsv | tsv-filter --header --ge 2:2000 > Temp_Files/groupTerror.tsv
+	# Terrorism: take columns iyear, country_txt, success. Move country_txt to first column
+	tsv-filter --header --str-eq 27:1 < Temp_Files/tsv_Terrorism.tsv | tsv-select -f 9,2,27 > Temp_Files/sortTerror.tsv
 
-# Terrorism: create countries and years arrays, tail portion takes everything but header
-countries=( $(tsv-summarize --header --unique-values 1 < Temp_Files/groupTerror.tsv | tail -n +2) )
-years=( $(tsv-summarize --header --unique-values 2 < Temp_Files/groupTerror.tsv | tail -n +2) )
+	# Terrorism: group by country, incidences per year, for years after 2000
+	tsv-summarize --header --group-by 1,2 --count < Temp_Files/sortTerror.tsv | tsv-filter --header --ge 2:2000 > Temp_Files/groupTerror.tsv
 
-# Terrorism: search groupTerror.tsv for country/year combination and add to file
-IFS="|"
-mkfile b Temp_Files/TerrorSpace.tsv
-echo "Country ${years[@]}" | sed "s/|/ /g" >> Temp_Files/TerrorSpace.tsv
-echo --- Compiling ---
-for country in `echo "${countries[@]}"`; do
-	terror_counts=("$country")
-	for year in `echo "${years[@]}"`; do
-		if [ -n "$(tsv-filter --str-eq 1:"$country" --str-eq 2:"$year" < Temp_Files/groupTerror.tsv)" ]; then
-			# echo "$year" "$country" --Not-- Empty
-			terror_counts+=( $( tsv-filter --str-eq 1:"${country}" --str-eq 2:"${year}" < Temp_Files/groupTerror.tsv | cut -f 3) )
-		else
-			# echo "$year $country Empty"
-			terror_counts+=(0)
-		fi
+	# Terrorism: create countries and years arrays, tail portion takes everything but header
+	countries=( $(tsv-summarize --header --unique-values 1 < Temp_Files/groupTerror.tsv | tail -n +2) )
+	years=( $(tsv-summarize --header --unique-values 2 < Temp_Files/groupTerror.tsv | tail -n +2) )
+
+	# Terrorism: search groupTerror.tsv for country/year combination and add to file
+	IFS="|"
+	mkfile b Temp_Files/TerrorSpace.tsv
+	echo "Country ${years[@]}" | sed "s/|/ /g" >> Temp_Files/TerrorSpace.tsv
+	echo --- Compiling ---
+	for country in `echo "${countries[@]}"`; do
+		terror_counts=("$country")
+		for year in `echo "${years[@]}"`; do
+			if [ -n "$(tsv-filter --str-eq 1:"$country" --str-eq 2:"$year" < Temp_Files/groupTerror.tsv)" ]; then
+				# echo "$year" "$country" --Not-- Empty
+				terror_counts+=( $( tsv-filter --str-eq 1:"${country}" --str-eq 2:"${year}" < Temp_Files/groupTerror.tsv | cut -f 3) )
+			else
+				# echo "$year $country Empty"
+				terror_counts+=(0)
+			fi
+		done
+		echo ${terror_counts[*]} >> Temp_Files/TerrorSpace.tsv
 	done
-	echo ${terror_counts[*]} >> Temp_Files/TerrorSpace.tsv
-done
-IFS=" "
+	IFS=" "
 
-# Terrorism: replace spaces with tabs
-sed -E "s/ [0-9]/	&/g" < Temp_Files/TerrorSpace.tsv > Cleaned_Data/Terrorism.tsv
+	# Terrorism: replace spaces with tabs
+	sed -E "s/ [0-9]/	&/g" < Temp_Files/TerrorSpace.tsv > Cleaned_Data/Terrorism.tsv
+fi
 
 # Print available TSV files to compare
 echo "Files available: "
 IFS="/"
 file_array=()
 file_names=()
-for file in $ls ./Cleaned_Data/*; do
+for file in $ls Cleaned_Data/*; do
 	read -ra name <<< "$file"
 	spl_name=${name[${#name[@]}-1]}
 	file_array+=($spl_name)
@@ -98,7 +102,7 @@ else
 	echo ${file_names[@]} [D]one
 
 	read -p "Which file would you like to compare? " file_2
-	if [ "$file_2" == "D" ]; then
+	if [ "$file_2" = "D" ]; then
 		file_2=
 		echo "Done"
 	else
@@ -114,7 +118,7 @@ else
 		echo ${file_names[@]} [D]one
 
 		read -p "Would you like to compare a third file? " file_3
-		if [ "$file_3" == "D" ]; then
+		if [ "$file_3" = "D" ]; then
 			file_3=
 			echo "Done"
 		else
@@ -128,19 +132,27 @@ else
 	fi
 fi
 
-# File name depends on how many files user would like joined
+# Files have different number of columns to join
+declare -A columns=( [edu_col]=6 [mfi_col]=18 [ter_col]=19 )
+
+###### YOU ARE HERE
+###### COLUMN NUMBERS HAVE BEEN DECLARED, NEED TO INCLUDE IN APPEND FIELDS
+
+
+# Join files depending on how many files user would like joined
 if [ -n "$file_3" ]; then
 	file_name="${file_2:0:3}_${file_1:0:3}_${file_3:0:3}"
-	tsv-join -z --filter-file ./Cleaned_Data/${file_2} --header --key-fields 1 Cleaned_Data/${file_1} Cleaned_Data/${file_3} > Combined_Files/"$file_name".tsv
+	tsv-join -z --filter-file Cleaned_Data/${file_2} --header --key-fields 1 Cleaned_Data/${file_1} Cleaned_Data/${file_3} > Combined_Files/"$file_name".tsv
 elif [ -n "$file_2" ]; then
 	file_name="${file_2:0:3}_${file_1:0:3}"
-	tsv-join -z --filter-file ./Cleaned_Data/${file_2} --header --key-fields 1 Cleaned_Data/${file_1} > Combined_Files/"$file_name".tsv
+	tsv-join -z --filter-file Cleaned_Data/${file_2} --header --key-fields 1 Cleaned_Data/${file_1} > Combined_Files/"$file_name".tsv
 else
 	echo "No files selected to join"
 fi
 
-# Remove created directors
-echo --Deleting Temporary Files--
-rm -iR Temp_Files
-rm -iR Cleaned_Data
-rm -iR Combined_Files
+# Remove created directors, but leave Cleaned_Data
+read -p "Delete temporary/combined files [y/n]? " delete
+if [ "$delete" = "y" ]; then
+	rm -iR Temp_Files
+	rm -iR Combined_Files
+fi
