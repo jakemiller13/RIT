@@ -1,7 +1,16 @@
+#!/usr/local/bin/bash
+
 # Datasets used:
-# https://www.kaggle.com/mylesoneill/world-university-rankings#education_expenditure_supplementary_data.csv
+# https://www.kaggle.com/mylesoneill/world-university-rankings
 # https://www.kaggle.com/burhanykiyakoglu/infant-mortality-fertility-income
 # https://www.kaggle.com/START-UMD/gtd
+
+echo "${BASH_VERSION}"
+
+# Make relevant directories
+mkdir Temp_Files
+mkdir Cleaned_Data
+mkdir Combined_Files
 
 # Check if user needs to clean/compile files, else skip all cleansing
 read -p "Do you need to compile clean data files [y/n]? " compile
@@ -9,10 +18,7 @@ read -p "Do you need to compile clean data files [y/n]? " compile
 # Only run all of this if user needs to
 if [ "$compile" = "y" ]; then
 
-	# Make relevant directories
-	mkdir Temp_Files
-	mkdir Cleaned_Data
-	mkdir Combined_Files
+	echo --- Compiling ---
 
 	# Convert all CSV files to TSV and save in Temp_Files
 	csv2tsv Raw_Data/education_expenditure_supplementary_data.csv > Temp_Files/tsv_Education.tsv
@@ -47,7 +53,6 @@ if [ "$compile" = "y" ]; then
 	IFS="|"
 	mkfile b Temp_Files/TerrorSpace.tsv
 	echo "Country ${years[@]}" | sed "s/|/ /g" >> Temp_Files/TerrorSpace.tsv
-	echo --- Compiling ---
 	for country in `echo "${countries[@]}"`; do
 		terror_counts=("$country")
 		for year in `echo "${years[@]}"`; do
@@ -82,6 +87,9 @@ done
 echo ${file_names[@]} [D]one
 IFS=" "
 
+# Files have different number of columns to join
+declare -A col_arr=( [E_col]=6 [M_col]=18 [F_col]=18 [I_col]=18 [T_col]=19 )
+
 # First file to compare
 read -p "Which file would you like to use as base? " file_1
 
@@ -92,8 +100,14 @@ if [ "$file_1" = "D" ]; then
 else
 	for file in "${!file_names[@]}"; do
 		if [ "${file_names[file]:1:1}" = "$file_1" ]; then
-			unset "file_names[file]"
 			file_1=${file_array[file]}
+			for col in "${!col_arr[@]}"; do
+				if [ "${file_names[file]:1:1}" = "${col:0:1}" ]; then
+					col_1=${col_arr[$col]}
+					pre_1="${col:0:1}_"
+				fi
+			done
+			unset "file_names[file]"
 		fi
 	done
 
@@ -108,8 +122,14 @@ else
 	else
 		for file in "${!file_names[@]}"; do
 			if [ "${file_names[file]:1:1}" = "$file_2" ]; then
-				unset "file_names[file]"
 				file_2=${file_array[file]}
+				for col in "${!col_arr[@]}"; do
+					if [ "${file_names[file]:1:1}" = "${col:0:1}" ]; then
+						col_2=${col_arr[$col]}
+						pre_2="${col:0:1}_"
+					fi
+				done
+				unset "file_names[file]"
 			fi
 		done
 
@@ -124,30 +144,41 @@ else
 		else
 			for file in "${!file_names[@]}"; do
 				if [ "${file_names[file]:1:1}" = "$file_3" ]; then
-					unset "file_names[file]"
-				file_3=${file_array[file]}
+					file_3=${file_array[file]}
+					for col in "${!col_arr[@]}"; do
+						if [ "${file_names[file]:1:1}" = "${col:0:1}" ]; then
+							col_3=${col_arr[$col]}
+							pre_3="${col:0:1}_"
+						fi
+					done
 				fi
 			done
 		fi
 	fi
 fi
 
-# Files have different number of columns to join
-declare -A columns=( [edu_col]=6 [mfi_col]=18 [ter_col]=19 )
-
-###### YOU ARE HERE
-###### COLUMN NUMBERS HAVE BEEN DECLARED, NEED TO INCLUDE IN APPEND FIELDS
-
-
 # Join files depending on how many files user would like joined
 if [ -n "$file_3" ]; then
-	file_name="${file_2:0:3}_${file_1:0:3}_${file_3:0:3}"
-	tsv-join -z --filter-file Cleaned_Data/${file_2} --header --key-fields 1 Cleaned_Data/${file_1} Cleaned_Data/${file_3} > Combined_Files/"$file_name".tsv
+	file_name="${file_1:0:3}_${file_2:0:3}_${file_3:0:3}"
+	file_location="Combined_Files"
+	tsv-join -z --filter-file Cleaned_Data/${file_2} --header --key-fields 1 --append-fields 2-$col_2 --prefix $pre_2 Cleaned_Data/${file_1} > Temp_Files/Temp_Combo.tsv
+	tsv-join -z --filter-file Cleaned_Data/${file_3} --header --key-fields 1 --append-fields 2-$col_3 --prefix $pre_3 Temp_Files/Temp_Combo.tsv > Combined_Files/"$file_name".tsv
+	rm Temp_Files/Temp_Combo.tsv
 elif [ -n "$file_2" ]; then
-	file_name="${file_2:0:3}_${file_1:0:3}"
-	tsv-join -z --filter-file Cleaned_Data/${file_2} --header --key-fields 1 Cleaned_Data/${file_1} > Combined_Files/"$file_name".tsv
+	file_name="${file_1:0:3}_${file_2:0:3}"
+	file_location="Combined_Files"
+	tsv-join -z --filter-file Cleaned_Data/${file_2} --header --key-fields 1 --append-fields 2-$col_2 --prefix $pre_2 Cleaned_Data/${file_1} > Combined_Files/"$file_name".tsv
 else
 	echo "No files selected to join"
+	file_name=${file_1:0:${#file_1}-4}
+	file_location="Cleaned_Data"
+fi
+
+# Look at specific country if user would like
+read -p "Would you like to look at a specific country [y/n]? " ask_country
+if [ "$ask_country" = "y" ]; then
+	read -p "What country would you like to look at? " country
+	sed -e "1p" -e "/$country/!d" "$file_location"/"$file_name".tsv > Combined_Files/"${country}_${file_name}".tsv
 fi
 
 # Remove created directors, but leave Cleaned_Data
