@@ -7,7 +7,6 @@ Created on Mon Oct 14 08:49:27 2019
 """
 
 import matplotlib.pyplot as plt
-import seaborn as sns
 import pandas as pd
 
 # Dataframes
@@ -27,6 +26,10 @@ ter = pd.read_csv('Combined_Terrorism.tsv',
 ter.columns = ter.columns.str.replace(' ', '')
 ter.drop(columns = '2017', inplace = True)
 
+######################################
+# PLOT THREE TOGETHER FOR COMPARISON #
+######################################
+
 # Create figure for 3 plots
 fig = plt.figure(figsize = (10, 10))
 fig.suptitle('Business Expansion into Israel, Japan or Mexico',
@@ -44,6 +47,7 @@ ax1.set_ylim(0, 40000)
 ax1.set_xlabel('Year')
 ax1.set_ylabel('Income per Capita')
 ax1.grid(which = 'major', axis = 'both')
+plt.savefig('Plot_Income.png')
 
 # Mortality Plot
 del mor.index.name
@@ -82,3 +86,40 @@ ax.set_ylabel('Percent of GDP')
 ax.grid(which = 'major', axis = 'both')
 plt.savefig('Plot_Education.png')
 plt.show()
+
+#######################################
+# PLOT EACH INDIVIDUALLY FOR WRITE-UP #
+#######################################
+
+# Income Plot
+inc.T.plot(kind = 'line', figsize = (5, 5))
+plt.title('Net National Income', fontsize = 13)
+plt.xlim(0, inc.shape[1]-1)
+plt.ylim(0, 40000)
+plt.xlabel('Year')
+plt.ylabel('Income per Capita')
+plt.grid(which = 'major', axis = 'both')
+plt.tight_layout()
+plt.savefig('Plot_Income.png')
+
+# Mortality Plot
+mor.T.plot(kind = 'line', figsize = (5, 5))
+plt.title('Infant Mortality', fontsize = 13)
+plt.xlim(0, inc.shape[1]-1)
+plt.ylim(0, 25)
+plt.xlabel('Year')
+plt.ylabel('Deaths per 1000 Live Births')
+plt.grid(which = 'major', axis = 'both')
+plt.tight_layout()
+plt.savefig('Plot_Mortality.png')
+
+# Terrorism Plot
+ter.T.plot(kind = 'line', figsize = (5, 5))
+plt.title('Terrorist Acts', fontsize = 13)
+plt.xlim(0, inc.shape[1]-1)
+plt.ylim(0, 150)
+plt.xlabel('Year')
+plt.ylabel('Successful Acts')
+plt.grid(which = 'major', axis = 'both')
+plt.tight_layout()
+plt.savefig('Plot_Terrorism.png')
