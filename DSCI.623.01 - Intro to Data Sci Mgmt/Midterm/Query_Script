@@ -10,7 +10,7 @@ echo "${BASH_VERSION}"
 # Make relevant directories
 mkdir Temp_Files
 mkdir Cleaned_Data
-mkdir Combined_Files
+mkdir Saved_Files
 
 # Check if user needs to clean/compile files, else skip all cleansing
 read -p "Do you need to compile clean data files [y/n]? " compile
@@ -81,8 +81,8 @@ for file in $ls Cleaned_Data/*; do
 	read -ra name <<< "$file"
 	spl_name=${name[${#name[@]}-1]}
 	file_array+=($spl_name)
-	file_name=[${spl_name:0:1}]${spl_name:1:${#spl_name}-5}
-	file_names+=($file_name)
+	file=[${spl_name:0:1}]${spl_name:1:${#spl_name}-5}
+	file_names+=($file)
 done
 echo ${file_names[@]} [D]one
 IFS=" "
@@ -96,7 +96,6 @@ read -p "Which file would you like to use as base? " file_1
 # Remove requested file from file_names
 if [ "$file_1" = "D" ]; then
 	file_1=
-	echo "Exiting"
 else
 	for file in "${!file_names[@]}"; do
 		if [ "${file_names[file]:1:1}" = "$file_1" ]; then
@@ -159,31 +158,33 @@ fi
 
 # Join files depending on how many files user would like joined
 if [ -n "$file_3" ]; then
+	echo "3 files selected to join"
 	file_name="${file_1:0:3}_${file_2:0:3}_${file_3:0:3}"
-	file_location="Combined_Files"
 	tsv-join -z --filter-file Cleaned_Data/${file_2} --header --key-fields 1 --append-fields 2-$col_2 --prefix $pre_2 Cleaned_Data/${file_1} > Temp_Files/Temp_Combo.tsv
-	tsv-join -z --filter-file Cleaned_Data/${file_3} --header --key-fields 1 --append-fields 2-$col_3 --prefix $pre_3 Temp_Files/Temp_Combo.tsv > Combined_Files/"$file_name".tsv
+	tsv-join -z --filter-file Cleaned_Data/${file_3} --header --key-fields 1 --append-fields 2-$col_3 --prefix $pre_3 Temp_Files/Temp_Combo.tsv > Saved_Files/"$file_name".tsv
 	rm Temp_Files/Temp_Combo.tsv
 elif [ -n "$file_2" ]; then
+	echo "2 files selected to join"
 	file_name="${file_1:0:3}_${file_2:0:3}"
-	file_location="Combined_Files"
-	tsv-join -z --filter-file Cleaned_Data/${file_2} --header --key-fields 1 --append-fields 2-$col_2 --prefix $pre_2 Cleaned_Data/${file_1} > Combined_Files/"$file_name".tsv
-else
-	echo "No files selected to join"
+	tsv-join -z --filter-file Cleaned_Data/${file_2} --header --key-fields 1 --append-fields 2-$col_2 --prefix $pre_2 Cleaned_Data/${file_1} > Saved_Files/"$file_name".tsv
+elif [ -n "$file_1" ]; then
+	echo "1 file selected to view. No files selected to join"
 	file_name=${file_1:0:${#file_1}-4}
-	file_location="Cleaned_Data"
+else
+	echo "No files selected. Exiting."
 fi
 
 # Look at specific country if user would like
-read -p "Would you like to look at a specific country [y/n]? " ask_country
-if [ "$ask_country" = "y" ]; then
-	read -p "What country would you like to look at? " country
-	sed -e "1p" -e "/$country/!d" "$file_location"/"$file_name".tsv > Combined_Files/"${country}_${file_name}".tsv
+if [ -n "$file_name" ]; then
+	read -p "Would you like to look at a specific country [y/n]? " ask_country
+	if [ "$ask_country" = "y" ]; then
+		read -p "What country would you like to look at? " country
+		sed -e "1p" -e "/$country/!d" Saved_Files/"$file_name".tsv > Saved_Files/"${country}_${file_name}".tsv
+	fi
 fi
 
-# Remove created directors, but leave Cleaned_Data
-read -p "Delete temporary/combined files [y/n]? " delete
+# Remove created directories, but leave Cleaned_Data
+read -p "Delete temporary files [y/n]? " delete
 if [ "$delete" = "y" ]; then
 	rm -iR Temp_Files
-	rm -iR Combined_Files
 fi
