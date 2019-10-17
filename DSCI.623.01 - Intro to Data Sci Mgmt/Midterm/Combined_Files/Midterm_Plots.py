@@ -75,17 +75,16 @@ plt.savefig('Plot_Income_Mortality_Terrorism.png')
 plt.tight_layout()
 
 # Education Plot, separate because of difference in time frames
-fig2, ax = plt.subplots(figsize = (5, 5))
 del edu.index.name
-edu.T.plot(kind = 'line', ax = ax)
-ax.set_title('Educational Expenditure', fontsize = 13)
-ax.set_xlim(0, edu.shape[1]-1)
-ax.set_ylim(0, 8)
-ax.set_xlabel('Year')
-ax.set_ylabel('Percent of GDP')
-ax.grid(which = 'major', axis = 'both')
+edu.T.plot(kind = 'line', figsize = (5, 5))
+plt.title('Educational Expenditure', fontsize = 13)
+plt.xlim(0, edu.shape[1]-1)
+plt.ylim(0, 8)
+plt.xlabel('Year')
+plt.ylabel('Percent of GDP')
+plt.grid(which = 'major', axis = 'both')
+plt.tight_layout()
 plt.savefig('Plot_Education.png')
-plt.show()
 
 #######################################
 # PLOT EACH INDIVIDUALLY FOR WRITE-UP #
