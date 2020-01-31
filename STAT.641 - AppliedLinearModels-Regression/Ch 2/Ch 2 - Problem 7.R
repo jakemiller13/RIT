@@ -3,8 +3,8 @@ library(xlsx)
 
 # Load data
 oxy <- read.xlsx(paste('/Users/Jake/Google Drive/RIT/STAT.641 - ',
-                       'AppliedLinearModels-Regression/data-prob-2-7.xls', 
-                       sep = ''), 1)
+                       'AppliedLinearModels-Regression/Ch 2/',
+                       'data-prob-2-7.xls', sep = ''), 1)
 
 # Create linear model
 oxy.lm <- lm(purity ~ hydro, data = oxy)
@@ -47,5 +47,5 @@ hyd <- data.frame(hydro = 1.00)
 ci_hyd = predict(oxy.lm, hyd, interval = 'confidence', level = 0.95)
 ci_hydlow <- ci_hyd[2]
 ci_hydhigh <- ci_hyd[3]
-cat('\n\n--- Problem 2.3.e ---\n')
+cat('\n\n--- Problem 2.7.e ---\n')
 cat('95% CI:', ci_hydlow, 'to', ci_hydhigh)

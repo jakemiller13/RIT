@@ -3,8 +3,8 @@ library(xlsx)
 
 # Load data
 nfl <- read.xlsx(paste('/Users/Jake/Google Drive/RIT/STAT.641 - ',
-                       'AppliedLinearModels-Regression/data-table-B1.xlsx', 
-                       sep = ''), 1)
+                       'AppliedLinearModels-Regression/Ch 2/',
+                       'data-table-B1.xlsx', sep = ''), 1)
 
 # Create linear model
 nfl.lm <- lm(y ~ x8, data = nfl)

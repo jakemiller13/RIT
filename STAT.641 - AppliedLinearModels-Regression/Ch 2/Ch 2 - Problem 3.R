@@ -3,8 +3,8 @@ library(xlsx)
 
 # Load data
 nrg <- read.xlsx(paste('/Users/Jake/Google Drive/RIT/STAT.641 - ',
-                       'AppliedLinearModels-Regression/data-table-B2.xlsx', 
-                       sep = ''), 1)
+                       'AppliedLinearModels-Regression/Ch 2/',
+                       'data-table-B2.xlsx', sep = ''), 1)
 
 # Create linear model
 nrg.lm <- lm(y ~ x4, data = nrg)
