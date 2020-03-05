@@ -119,16 +119,21 @@ title_print('Problem 2.c')
 
 # Setup - because each X has exactly 2 y, can just append to dataframe
 df['Mean'] = df.apply(lambda x: np.mean(x), axis = 1)
-df['Sums'] = df.apply(lambda x: (x['Mileage_(y1)'] + x['Mileage_(y2)'] - 
-                                 2 * x['Mean']) ** 2, axis = 1)
+df['PE Sums'] = df.apply(lambda x: ((x['Mileage_(y1)'] - x['Mean']) ** 2 +
+                                    (x['Mileage_(y2)'] - x['Mean']) ** 2),
+                         axis = 1)
+
+# Get beta-hat, start to calculate SS_reg
+b_hat = np.matmul(np.matmul(np.linalg.inv(np.matmul(X.T, X)), X.T), y)
+first_term = np.matmul(np.matmul(b_hat.T, X.T), y)
+second_term = sum(y)**2 / len(y)
 
 # Sum of Squares
-SS_tot = sum(y**2) - sum(y)**2 / len(y)
-SS_reg = np.matmul(np.matmul(np.linalg.inv(np.matmul(X.T, X)), X.T), y)
-# TODO these are betas, need to translate into SS_reg (page 82)
-SS_res = SS_tot - SS_reg
-SS_pe = sum(df['Sums'])
-SS_lof = SS_res - SS_pe
+SS_tot = np.round(float(sum(y**2) - sum(y)**2 / len(y)), 3)
+SS_reg = np.round(float(first_term - second_term), 3)
+SS_res = np.round(float(SS_tot - SS_reg), 3)
+SS_pe = np.round(float(sum(df['PE Sums'])), 3)
+SS_lof = np.round(float(SS_res - SS_pe), 3)
 
 # Degrees of Freedom
 DoF_reg = 1
@@ -138,10 +143,46 @@ DoF_pe = len(df) # because each X has exactly 2 y, this is just num of X's
 DoF_lof = DoF_res - DoF_pe
 
 # Mean Squares
-MS_reg = SS_reg / DoF_reg
-MS_res = SS_res / DoF_res
-MS_pe = SS_pe / DoF_pe
-MS_lof = SS_lof / DoF_lof
+MS_reg = np.round(float(SS_reg / DoF_reg), 3)
+MS_res = np.round(float(SS_res / DoF_res), 3)
+MS_pe = np.round(float(SS_pe / DoF_pe), 3)
+MS_lof = np.round(float(SS_lof / DoF_lof), 3)
+
+# F0
+F0 = round(MS_lof / MS_pe, 3)
+
+# P-value
+P = round(1 - scipy.stats.f.cdf(F0, DoF_reg, DoF_res), 10)
+
+table = Table([['Regression', 'Error', 'Lack of Fit', 'Pure Error', 'Total'],
+               [SS_reg, SS_res, SS_lof, SS_pe, SS_tot], # Sum of Squares
+               [DoF_reg, DoF_res, DoF_lof, DoF_pe, DoF_tot], # Degrees of Freedom
+               [MS_reg, MS_res, MS_lof, MS_pe, ''], # Mean Square
+               ['', '', F0, '', ''], # F0
+               ['', '', P, '', '']], # P-value
+              names = ('Source of Variation', 'Sum of Squares',
+                       'Degrees of Freedom', 'Mean Square', 'F0', 'P-value'))
+
+print(table.to_pandas().to_string())
+
+###############
+# Problem 2.d #
+###############
+title_print('Problem 2.d')
+print('--> R = {} | Low R-squared suggests model does not fit data well <--'.\
+      format(round(results.rsquared, 5)))
+
+###############
+# Problem 2.e #
+###############
+title_print('Problem 2.e')
+print('--> P = {} | Reject hypothesis that model describes data <--'.format(P))
+
+###############
+# Problem 2.f #
+###############
+title_print('Problem 2.f')
+print('--> Assumed first order linear regression, bad assumption <--')
 
 ###############
 # Problem 4.3 #
