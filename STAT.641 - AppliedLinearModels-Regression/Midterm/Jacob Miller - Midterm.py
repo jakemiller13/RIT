@@ -8,9 +8,10 @@ Created on Thu Mar  5 11:36:09 2020
 import pandas as pd
 import numpy as np
 import patsy
+import scipy
 import statsmodels.api as sm
 import matplotlib.pyplot as plt
-from astropy.table import Table
+import scipy.stats
 
 # Note: Problems are separated into functions for easier troubleshooting
 
@@ -19,9 +20,9 @@ def title_print(text):
     Used throughout to print section titles
     '''
     print()
-    print('#' * (len(text) + 4))
-    print('|', text, '|')
-    print('#' * (len(text) + 4))
+    print('#' * 80)
+    print('|', text.center(76, ' '), '|')
+    print('#' * 80)
 
 def Problem_1():
     df = pd.DataFrame(data =
@@ -34,14 +35,145 @@ def Problem_1():
                        'Pr(>|t|)':      [3.57e-13, 0.038834, 0.107111,
                                          0.000276, 0.797373]},
                       index = ['Intercept', 'x1', 'x2', 'x3', 'x4'])
+    ###############
+    # Problem 1.1 #
+    ###############
+    title_print('Problem 1.1')
+    
+    t = df.loc['x1']['Estimate'] / df.loc['x1']['Std. Error']
+    print('> t-statistic = {} <'.format(round(t, 3)).center(80, '-'))
+
+    ###############
+    # Problem 1.2 #
+    ###############
+    title_print('Problem 1.2')
+    
+    DoF_resid = 95
+    k = 4
+    p = k + 1
+    n = DoF_resid + p
+    
+    print('> {} observations (k = {} | p = {} | DoF resid = {}) <'.\
+          format(n, k, p, DoF_resid).center(80, '-'))
+
+    ###############
+    # Problem 1.3 #
+    ###############
+    title_print('Problem 1.3')
+    
+    print('> Yes, H0: B3 = 0 rejected at 0.05 level because p-value = {} <'.\
+          format(df.loc['x3']['Pr(>|t|)']).center(80, '-'))
+
+    ###############
+    # Problem 1.4 #
+    ###############
+    title_print('Problem 1.4')
+    
+    B0_est = df.loc['Intercept']['t value'] * df.loc['Intercept']['Std. Error']
+    print('> Estimate of intercept B0 = {} <'.format(round(B0_est, 3)).\
+                                                     center(80, '-'))
+    
+    ###############
+    # Problem 1.5 #
+    ###############
+    title_print('Problem 1.5')
+    
+    t_test = round(scipy.stats.t.ppf(0.975, df = 95), 3)
+    
+    print('> {} +/- {} * {} <'.format(df.loc['x3']['Estimate'],
+                                      t_test,
+                                      df.loc['x3']['Std. Error']).\
+          center(80, '-'))
+
     return df
 
 def Problem_3():
-    df = pd.DataFrame(data = {'DoF':            [3, np.nan, 23],
-                              'Sum of Squares': [np.nan, 61.44300, 689.2600],
-                              'Mean Square':    [np.nan, np.nan, ''],
-                              'F Value':        [np.nan, '', ''],
-                              'PR > F':         [np.nan, '', '']})
+    
+    DoF_mod = 3
+    DoF_err = np.nan
+    DoF_tot = 23
+    SS_mod = np.nan
+    SS_err = 61.44300
+    SS_tot = 689.26000
+    MS_mod = np.nan
+    MS_err = np.nan
+    F = np.nan
+    P = np.nan
+    
+    df = pd.DataFrame(data = {'DoF':            [DoF_mod, DoF_err, DoF_tot],
+                              'Sum of Squares': [SS_mod, SS_err, SS_tot],
+                              'Mean Square':    [MS_mod, MS_err, ''],
+                              'F Value':        [F, '', ''],
+                              'PR > F':         [P, '', '']},
+                      index = ['Model', 'Error', 'Corrected Total'])
+    
+    ###############
+    # Problem 3.1 #
+    ###############
+    title_print('Problem 3.1')
+    
+    obs = df.loc['Corrected Total']['DoF'] + 1
+    
+    print('| Observations = {} |'.format(int(obs)).center(80, '.'))
+    
+    ###############
+    # Problem 3.2 #
+    ###############
+    title_print('Problem 3.2')
+    
+    DoF_err = DoF_tot - DoF_mod
+    SS_mod = SS_tot - SS_err
+    MS_mod = SS_mod / DoF_mod
+    MS_err = SS_err / DoF_err
+    F = MS_mod / MS_err
+    P = round(1 - scipy.stats.f.cdf(F, DoF_mod, DoF_err), 10)
+    
+    df = pd.DataFrame(data = {'DoF':            [DoF_mod, DoF_err, DoF_tot],
+                              'Sum of Squares': [SS_mod, SS_err, SS_tot],
+                              'Mean Square':    [MS_mod, MS_err, ''],
+                              'F Value':        [F, '', ''],
+                              'PR > F':         [P, '', '']},
+                      index = ['Model', 'Error', 'Corrected Total'])
+    print(df)
+
+    ###############
+    # Problem 3.3 #
+    ###############
+    title_print('Problem 3.3')
+    
+    print('| y = B_0 + B_1 * x_1 + B_2 * x_2 + B_3 * x_3 + e |'.\
+          center(80, '.'))
+    print('| H_0: B_1 = B_2 = B_3 = 0 |'.center(80, '.'))
+    print('| F_0 > F(0.05, 3, 20), therefore reject H_0 |'.center(80, '.'))
+
+    ###############
+    # Problem 3.4 #
+    ###############
+    title_print('Problem 3.4')
+    
+    r_squared = SS_mod / SS_tot
+    
+    print('| R^2 = {} |'.format(round(r_squared, 4)).center(80, '.'))
+
+    ###############
+    # Problem 3.5 #
+    ###############
+    title_print('Problem 3.5')
+    
+    k = 3
+    p = k + 1
+    
+    r_adj = 1 - (SS_err / (obs - p) / (SS_tot / (obs - 1)))
+    
+    print('| R^2-adjusted = {} |'.format(round(r_adj, 4)).center(80, '.'))
+
+    ###############
+    # Problem 3.6 #
+    ###############
+    title_print('Problem 3.6')
+    
+    print('| Sigma = {} |'.format(round(np.sqrt(MS_err), 4)).center(80, '.'))
+    
     return df
 
 def Problem_6():
@@ -52,15 +184,24 @@ def Problem_6():
     model = sm.OLS(y, X)
     results = model.fit()
     results.model.data.design_info = X.design_info
-    
+
+    ###############
+    # Problem 6.a #
+    ###############
     title_print('Problem 6.a')
     print('> y = {} + {} * x + e <'.format(results.params[0],
                                            results.params[1]).center(80, '-'))
     
+    ###############
+    # Problem 6.b #
+    ###############
     title_print('Problem 6.b')
     print('> R^2 = {} | High R^2 value suggests statistical significant <'.\
           format(results.rsquared).center(80, '-'))
-    
+
+    ###############
+    # Problem 6.c #
+    ###############
     title_print('Problem 6.c')
     fig, ax = plt.subplots()
     ax.scatter(results.fittedvalues, results.resid)
@@ -73,9 +214,7 @@ def Problem_6():
           center(80, '-'))
     print('> Likely more complicated model would fit better <'.center(80, '-'))
 
-def Problem_7():
-    # TODO b, c, d, e, f, g, h1, h2, h3
-    
+def Problem_7():    
     df = pd.DataFrame(data = {'y': # Miles/gal
                               [18.90, 17.00, 20.00, 18.25,
                                20.07, 11.20, 22.12, 21.47,
@@ -112,33 +251,95 @@ def Problem_7():
                                'Corolla E-5', 'Astre', 'Mark IV', 'Celica GT',
                                'Charger SE', 'Cougar', 'Elite', 'Matador',
                                'Corvette'])
+    
+    ###############
+    # Problem 7.a #
+    ###############
+    title_print('Problem 7.a')
+    
     y, X = patsy.dmatrices('y ~ X1 + X2', df)
     model = sm.OLS(y, X)
     results = model.fit()
     results.model.data.design_info = X.design_info
     
-    title_print('Problem 7.a')
-    print('y = {} + {} * x1 + {} * x2 + e'.format(round(results.params[0], 3),
-                                                  round(results.params[1], 3),
-                                                  round(results.params[2], 3))\
-          .center(80, '-'))
-    
+    print('> y = {} + {} * x1 + {} * x2 + e <'.format(
+          round(results.params[0], 3),
+          round(results.params[1], 3),
+          round(results.params[2], 3)).center(80, '-'))
+
+    ###############
+    # Problem 7.b #
+    ###############
     title_print('Problem 7.b')
-    
+
+    aov_table = sm.stats.anova_lm(results, typ = 1)
+    print('\n--- Analysis of Variance table ---\n{}'.format(aov_table))
+    print('\nRegression F: {}'.format(round(results.fvalue, 2)))
+    print('Regression p: {}\n'.format(round(results.f_pvalue, 4)))
+    print('> Based on P-values, X1 is significant, X2 is not <'.\
+          center(80, '-'))
+
+    ###############
+    # Problem 7.c #
+    ###############
     title_print('Problem 7.c')
     
+    print('> R-squared explains {}% of total variability <'.\
+          format(round(results.rsquared * 100, 2)).center(80, '-'))
+
+    ###############
+    # Problem 7.d #
+    ###############
     title_print('Problem 7.d')
+
+    conf_int = np.round(results.conf_int(), 5)
     
+    print('> 95% Confidence Intervals <'.center(80, '-'))
+    print('> Intercept: {} <'.format(conf_int[0]).center(80, '-'))
+    print('> B1: {} <'.format(conf_int[1]).center(80, '-'))
+    print('> B2: {} <'.format(conf_int[2]).center(80, '-'))
+    print('> 95% confident respective slopes are between these values <'.\
+          center(80, '-'))
+
+    ###############
+    # Problem 7.e #
+    ###############
     title_print('Problem 7.e')
+
+    intervals = np.round(results.get_prediction([1, 275, 3000]).\
+                         summary_frame(alpha = 0.05), 4)
+
+    print('> 95% Confidence Interval <'.center(80, '-'))
+    print('> {} to {} <'.format(intervals['mean_ci_lower'].values,
+                                intervals['mean_ci_upper'].values).\
+                         center(80, '-'))
+    print('> 95% confident interval contains true mean <'.center(80, '-'))
     
+    ###############
+    # Problem 7.f #
+    ###############
     title_print('Problem 7.f')
     
+    print('> 95% Prediction Interval <'.center(80, '-'))
+    print('> {} to {} <'.format(intervals['obs_ci_lower'].values,
+                                intervals['obs_ci_upper'].values).\
+                         center(80, '-'))
+    print('> 95% confident interval contains prediction <'.center(80, '-'))
+
+    ###############
+    # Problem 7.g #
+    ###############
     title_print('Problem 7.g')
+    
+    print('> Prediction interval is wider <'.center(80, '-'))
+    print('> More uncertainty when making single/specific prediction <'.\
+          center(80, '-'))
     
     #################
     # Problem 7.h.1 #
     #################
     title_print('Problem 7.h.1')
+    
     residuals = results.resid
     prob = [(i - 1/2) / len(y) for i in range(len(y))]
     
@@ -163,6 +364,7 @@ def Problem_7():
     # Problem 7.h.2 #
     #################
     title_print('Problem 7.h.2')
+    
     fig, ax = plt.subplots()
     ax.scatter(results.fittedvalues, residuals)
     ax.axhline(0)
@@ -181,10 +383,13 @@ def Problem_7():
     # Problem 7.h.3 #
     #################
     title_print('Problem 7.h.3')
+    
     fig, ax = plt.subplots()
     ax2 = ax.twiny()
-    scat_1 = ax.scatter(df['X1'], residuals, color = 'orange', label = 'X1')
-    scat_2 = ax2.scatter(df['X2'], residuals, color = 'black', label = 'X2')
+    scat_1 = ax.plot(df['X1'], residuals,
+                     marker = '*', linestyle = '', color = 'orange', label = 'X1')
+    scat_2 = ax2.plot(df['X2'], residuals,
+                      marker = 'o', linestyle = '', color = 'black', label = 'X2')
     ax.axhline(0)
     ax.set_xlabel('X_1')
     ax2.set_xlabel('X_2')
@@ -192,12 +397,11 @@ def Problem_7():
     
     plots = scat_1 + scat_2
     labels = [label.get_label() for label in plots]
-    ax.legend(plots, labels)
-    ax2.legend()
-    
+    ax.legend(plots, labels, loc = 'lower right')
     plt.title('Residuals Versus X_i')
     plt.show()
+    
+    print('> One y value plotted for each X-value <'.center(80, '-'))
+    print('> Non-linear pattern trends to upper right <'.center(80, '-'))
 
     return df, results
-
-
