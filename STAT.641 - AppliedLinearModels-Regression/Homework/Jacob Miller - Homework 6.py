@@ -25,7 +25,7 @@ print(results.summary())
 # Linear regression model
 coef = np.round(results.params, 3)
 print('\ny = {} + ({} * x10) + ({} * x11)'.format(coef[0], coef[1], coef[2]))
-print('No. Low p-value [{}], so transmission not significant\n'.\
+print('No. High p-value [{}], so transmission not significant\n'.\
       format(round(results.pvalues[2], 3)))
 
 # Interaction
