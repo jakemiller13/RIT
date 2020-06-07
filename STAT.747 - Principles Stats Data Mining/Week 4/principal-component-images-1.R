@@ -11,7 +11,7 @@
     library(ggplot2)
     library(proto)
     library(readr) 
-    library(EBImage)
+#    library(EBImage) # Not loading but also not used
 
     #train.digit <- read.csv('train.csv')
     #labels      <- train.digit[, 1]
@@ -30,7 +30,8 @@
     #k <- 64
 
 
-    X <- read.csv('orl-faces2.csv')
+    X <- read.csv(paste('/Users/Jake/Google Drive/RIT/STAT.747 - ',
+                  'Principles Stats Data Mining/Data/orl-faces2.csv', sep = ''))
 
     faces <- t(X)          # Rows are image attributes and columns are people   p x n
 
