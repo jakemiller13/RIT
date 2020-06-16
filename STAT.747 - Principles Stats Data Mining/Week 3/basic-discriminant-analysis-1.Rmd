@@ -1,0 +1,606 @@
+---
+title: "Basic Discrimant Analysis for Classification"
+author: "Fokoue Ernest, School of Mathematical Sciences"
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  pdf_document: default
+---
+
+
+This segment introduces the basics of discriminant analysis in the context of both binary and multi-category classification.
+ * Bayes Theorem
+ * Multivariate Gaussian Distribution
+ * Linear Discriminant Analysis
+ * Fisher Linear Discriminant
+ * Quadratic Discriminant Analysis
+ * Naive Bayesian Classification
+ * Regularized Discriminant Analysis
+
+```{R include=FALSE, echo=FALSE, message=FALSE}
+knitr::opts_chunk$set(comment = NA)
+```
+
+  ## Packages used in this segment
+  
+```{R}
+    library(class)
+    library(MASS)
+    library(kernlab)
+    library(mlbench)
+    library(reshape2)
+    library(ROCR)
+    library(ggplot2)
+    library(ada)
+    library(ipred)
+    library(survival)
+    library(rchallenge)
+    library(PerformanceAnalytics)
+    library(knitr)
+    library(acepack)
+    library(HSAUR2)
+    library(corrplot)
+    library(e1071)
+    #library(caret)    
+    #library(adabag)
+```
+  
+ 
+## Datasets used in this segment
+  
+  
+```{R}
+  xy <- read.csv('doughnuts.csv') 
+  xy <- read.csv('four-corners-data-1.csv') 
+  xy <- read.csv('simple-2d-for-knn-2.csv'); colnames(xy)[2:3]<-c('X1','X2') 
+  xy <- read.csv('simple-2d-for-knn.csv'); colnames(xy)[2:3]<-c('X1','X2')
+  xy <- read.csv('banana-shaped-data-1.csv')
+  xy <- read.csv('lung-cancer-1.csv')  
+  xy <- read.csv('class-faithful.csv'); colnames(xy)<-c('X1','X2','y'); xy[,3] <- ifelse(xy[,3]==1,1,0); 
+  xy <- read.csv('doughnuts-easy.csv') 
+  xy <- read.csv('four-corners-data-1.csv') 
+```
+
+Now, let's shape things nicely for heavy duty computations
+
+```{R}
+  n   <- nrow(xy)       # Sample size
+  p   <- ncol(xy) - 1   # Dimensionality of the input space
+  pos <- 1+p              # Position of the response
+  x   <- xy[,-pos]      # Data matrix: n x p matrix
+  xy[,pos]   <- as.factor(xy[, pos])      # Response vector
+  y <- xy[,pos]
+  n; p
+```
+  Let's have a look at the first six and the last six observations
+  
+```{R}
+  head(xy)
+  tail(xy)
+  
+  xy[sample(nrow(xy))[1:10],]
+  
+  which(is.na(xy))
+```
+  Create the table
+  
+```{R}
+  library(xtable)
+  xtable(head(xy))
+```
+  
+Let's also ascertain the types of the variables
+  
+```{R}
+  str(xy)
+```
+$$
+f: \mathcal{X} \rightarrow \mathcal{Y}
+$$
+
+
+Compute the correlation
+
+```{R}
+  library(corrplot)
+  corr.x <- cor(xy[,-pos])
+  corrplot(corr.x)
+```
+
+As much as possible plot whatever meaningful aspects are plottable
+```{R} 
+  plot(xy[,-pos], col=as.numeric(xy[,pos])+2)
+```
+
+```{R}
+library(KernSmooth)
+x.1 <- xy[y==unique(y)[1],-pos]
+dens.est <- bkde2D(x.1, bandwidth = sapply(x.1,dpik))
+plot(x.1, xlab = expression(X[1]), ylab=expression(X[2]))
+contour(x = dens.est$x1, y = dens.est$x2, z = dens.est$fhat, add = TRUE)
+
+x.2 <- xy[y==unique(y)[2],-pos]
+dens.est <- bkde2D(x.2, bandwidth = sapply(x.2,dpik))
+plot(x.2, xlab = expression(X[1]), ylab=expression(X[2]))
+contour(x = dens.est$x1, y = dens.est$x2, z = dens.est$fhat, add = TRUE)
+
+```
+
+
+## Split of the data into training set and test set
+
+```{R}
+# Split the data
+  
+  set.seed (19671210)          # Set seed for random number generation to be reproducible
+  
+  epsilon <- 1/3               # Proportion of observations in the test set
+  nte     <- round(n*epsilon)  # Number of observations in the test set
+  ntr     <- n - nte
+
+  id.tr   <- sample(sample(sample(n)))[1:ntr]   # For a sample of ntr indices from {1,2,..,n}
+  #id .tr <- sample(1:n, ntr, replace=F)        # Another way to draw from {1,2,..n}
+  id.te   <- setdiff(1:n, id.tr)
+```
+
+When one has to deal with classification tasks for which the prior probabilities of class membership are very different, it becomes important to choose training and test sets that faithfully represent the original label distribution. This is where stratification of the subsampling becomes essential. The function below performs stratified hold out subsampling
+
+```{R}
+stratified.holdout <- function(y, ptr)
+{
+  n              <- length(y)
+  labels         <- unique(y)       # Obtain classifiers
+  id.tr <- id.te <- NULL
+  # Loop once for each unique label value
+  
+  y <- sample(sample(sample(y)))
+  
+  for(j in 1:length(labels)) 
+  {
+    sj    <- which(y==labels[j])  # Grab all rows of label type j  
+    nj    <- length(sj)           # Count of label j rows to calc proportion below
+    
+    id.tr <- c(id.tr, (sample(sample(sample(sj))))[1:round(nj*ptr)])
+  }                               # Concatenates each label type together 1 by 1
+  
+  id.te  <- (1:n) [-id.tr]          # Obtain and Shuffle test indices to randomize                                
+  
+  return(list(idx1=id.tr,idx2=id.te)) 
+}  
+```
+
+Let us now stratify our split
+
+```{R}
+  
+  hold <- stratified.holdout(as.factor(xy[,pos]), 1-epsilon) 
+  id.tr <- hold$idx1
+  id.te <- hold$idx2
+  ntr   <- length(id.tr)
+  nte   <- length(id.te)
+```
+
+## Predictive performance in Discriminant Analysis
+
+Sample mean vectors
+$$
+\widehat{\bf \mu}_g = \frac{1}{n_g}\sum_{i: y_i = g}^n{{\bf x}_i}
+ = \frac{1}{n_g}\sum_{i=1}^n{{\bf 1}(y_i = g){\bf x}_i}$$
+
+The sample covariance matrices
+$$
+S_g = \frac{1}{n_g-1}\sum_{i=1}^n{{\bf 1}(Y_i=g)({\bf x}_i-\widehat{\bf \mu}_g)({\bf x}_i-\widehat{\bf \mu}_g)^\top}
+$$
+ 
+The pooled covariance
+$$
+{\widehat\Sigma} 
+= \frac{1}{n-G}\sum_{g=1}^G{(n_g-1)S_g}
+$$
+
+Prior probabilities of class membership
+$$
+\widehat{\pi}_g = \frac{n_g}{n}= \frac{1}{n}\sum_{i=1}^n{{\bf 1}(Y_i=g)}
+$$
+
+
+If $\mathcal{Y}$ represents our output space and $\mathcal{X}$ represent our input space, and the provided
+dataset is $\mathcal{D}_n$, then the predicted class $\widehat{f}_{\tt LDA}({\bf x})$ of ${\bf x} \in \mathcal{X}$ is given by
+$$
+\widehat{f}_{\tt LDA}({\bf x}) = \underset{g \in \mathcal{Y}}{{\tt argmax}}\Big\{\widehat{\alpha}_g+{\bf \beta}_g^\top {\bf x}\Big\}
+$$
+where
+$$
+\widehat{\bf \beta}_g = \widehat{\Sigma}^{-1} \widehat{{\bf \mu}}_g \quad \text{with} \quad 
+\widehat{{\bf \mu}}_g = \frac{1}{n_c}\sum_{i=1}^n{\mathbf{1}(y_i=g) {\bf x}_i}
+$$
+Examples of confusion matrices from LDA
+
+```{R}
+  library(class)
+  y.te     <- y[id.te]                                 # True responses in test set
+  y.te.hat <- predict(lda(x[id.tr,], y[id.tr]), x[id.te,])$class # Predicted responses in test set
+  
+  conf.mat.te <- table(y.te, y.te.hat)
+  conf.mat.te
+  
+  cov(x[y==unique(y)[1], ])
+  cov(x[y==unique(y)[2], ],)
+```
+
+
+Below are the ROC curves 
+
+```{R}
+#
+#  ROC Curve: Plotting one single ROC Curve
+#
+  library(ROCR)
+  
+  y.roc   <- as.factor(y)
+  
+  lda.mod  <-  lda(x[id.tr,],  y.roc[id.tr])
+  prob     <-  predict(lda.mod, x[id.tr,])$posterior[,2]
+  pred.lda <- prediction(prob, y.roc[id.tr])
+  perf.lda <- performance(pred.lda, measure='tpr', x.measure='fpr')
+  
+  plot(perf.lda, col=2, lwd= 2, lty=2, main=paste('ROC curve for LDA'))
+  abline(a=0,b=1)
+```
+We see above that the area under the curve (AUC) for the 3NN classifier on the test
+set is not very satisfying. The task of classifying diabetes appears difficult
+
+We now consider the creation of the ROC curves of our binary classifiers, but this time
+based on the training set
+
+```{R}
+#
+# Comparative ROC Curves on the training set
+# 
+  library(ROCR)
+  
+  y.roc   <- as.factor(y)
+  
+  lda.mod  <-  lda(x[id.tr,],  y.roc[id.tr])
+  prob     <-  predict(lda.mod, x[id.tr,])$posterior[,2]
+  pred.lda <- prediction(prob, y.roc[id.tr])
+  perf.lda <- performance(pred.lda, measure='tpr', x.measure='fpr')
+  
+  qda.mod  <-  qda(x[id.tr,],  y.roc[id.tr])
+  prob     <-  predict(qda.mod, x[id.tr,])$posterior[,2]
+  pred.qda <- prediction(prob, y.roc[id.tr])
+  perf.qda <- performance(pred.qda, measure='tpr', x.measure='fpr')
+  
+  naive.mod  <-  naiveBayes(x[id.tr,],  y.roc[id.tr])
+  prob       <-  predict(naive.mod, x[id.tr,], type='raw')[,2]
+  pred.naive <- prediction(prob, y.roc[id.tr])
+  perf.naive <- performance(pred.naive, measure='tpr', x.measure='fpr')
+  
+  plot(perf.lda, col=2, lwd= 2, lty=2, main=paste('Comparative ROC curves in Training'))
+  plot(perf.qda, col=3, lwd= 2, lty=3, add=TRUE)
+  plot(perf.naive, col=4, lwd= 2, lty=4, add=TRUE)
+  abline(a=0,b=1)
+  legend('bottomright', inset=0.05, c('LDA','QDA', 'NAIVE'),  col=2:4, lty=2:4)
+```
+
+Let's look at the test set
+
+```{R}
+#
+# Comparative ROC Curves on the test set
+# 
+  library(ROCR)
+  
+  y.roc   <- as.factor(y)
+  
+  lda.mod  <-  lda(x[id.tr,],  y.roc[id.tr])
+  prob     <-  predict(lda.mod, x[id.te,])$posterior[,2]
+  pred.lda <- prediction(prob, y.roc[id.te])
+  perf.lda <- performance(pred.lda, measure='tpr', x.measure='fpr')
+  
+  qda.mod  <-  qda(x[id.tr,],  y.roc[id.tr])
+  prob     <-  predict(qda.mod, x[id.te,])$posterior[,2]
+  pred.qda <- prediction(prob, y.roc[id.te])
+  perf.qda <- performance(pred.qda, measure='tpr', x.measure='fpr')
+  
+  naive.mod  <-  naiveBayes(x[id.tr,],  y.roc[id.tr])
+  prob       <-  predict(naive.mod, x[id.te,], type='raw')[,2]
+  pred.naive <- prediction(prob, y.roc[id.te])
+  perf.naive <- performance(pred.naive, measure='tpr', x.measure='fpr')
+  
+  plot(perf.lda, col=2, lwd= 2, lty=2, main=paste('Comparative ROC curves in Test'))
+  plot(perf.qda, col=3, lwd= 2, lty=3, add=TRUE)
+  plot(perf.naive, col=4, lwd= 2, lty=4, add=TRUE)
+  abline(a=0,b=1)
+  legend('bottomright', inset=0.05, c('LDA','QDA', 'NAIVE'),  col=2:4, lty=2:4)
+```
+
+We see now from the above comparative ROC curves, that 1NN is no longer the winner. It's apparent superior performance on the training set was most likely due to overfitting. This is an important lesson to learn, namely that one must base predictive comparisons on generalization which is mimic by the test set
+
+### Comparing learning machines from different function spaces
+
+
+```{R}
+#
+# Comparative ROC Curves on the test set
+# 
+  library(ROCR)
+  library(class)
+  library(MASS)
+  library(kernlab)
+  library(rpart)
+  library(ada)
+
+  xy[,pos] <- as.factor(xy[,pos])
+  
+  y.roc   <- as.factor(y)
+  
+  # 1-Linear Discriminant Analysis
+  
+  lda.mod  <- lda(x[id.tr,], y.roc[id.tr])
+  prob     <- predict(lda.mod, x[id.te,])$posterior[,2]
+  pred.lda <- prediction(prob, y.roc[id.te])
+  perf.lda <- performance(pred.lda, measure='tpr', x.measure='fpr')
+  
+
+  # 2-Quadratic Discriminant Analysis
+  
+  qda.mod  <- qda(x[id.tr,], y.roc[id.tr])
+  prob     <- predict(qda.mod, x[id.te,])$posterior[,2]
+  pred.qda <- prediction(prob, y.roc[id.te])
+  perf.qda <- performance(pred.qda, measure='tpr', x.measure='fpr')
+  
+  
+  # 3-Logistic Regression
+  
+  log.mod  <- glm(as.factor(y)~., data=xy[id.tr, ], family=binomial(link='logit'))
+  prob     <- predict(log.mod, x[id.te,], type='response')  # Probabilities as prediction
+  pred.log <- prediction(prob, y.roc[id.te])
+  perf.log <- performance(pred.log, measure='tpr', x.measure='fpr')
+  
+  # 4-Naive Bayes 
+  library(naivebayes)
+  naive.mod  <- naive_bayes(as.factor(y)~., data=xy[id.tr, ])
+  prob       <- predict(naive.mod, x[id.te,], type='prob')[,2]  # Probabilities as prediction
+  pred.naive <- prediction(prob, y.roc[id.te])
+  perf.naive <- performance(pred.naive, measure='tpr', x.measure='fpr')
+  
+  # 5-Nearest Neighbors Learning Machine
+
+  kNN.mod   <- class::knn(x[id.tr,], x[id.te,], y.roc[id.tr], k=12, prob=TRUE)
+  prob      <- attr(kNN.mod, 'prob')
+  prob      <- 2*ifelse(kNN.mod == "0", 1-prob, prob) - 1
+  pred.kNN <- prediction(prob, y.roc[id.te])
+  perf.kNN <- performance(pred.kNN, measure='tpr', x.measure='fpr')
+  
+  # 6-Support Vector Machines
+  
+  svm.mod  <- ksvm(as.factor(y)~., data=xy[id.tr, ], kernel='rbfdot', type='C-svc', prob.model=TRUE)
+  prob     <- predict(svm.mod, x[id.te, ], type='probabilities')[,2]
+  pred.svm <- prediction(prob, y.roc[id.te])
+  perf.svm <- performance(pred.svm, measure='tpr', x.measure='fpr')
+  
+  # 7-Classification Trees
+  
+  tree.mod  <- rpart(as.factor(y)~., data=xy[id.tr, ])
+  prob      <- predict(tree.mod, x[id.te, ], type='prob')[,2]
+  pred.tree <- prediction(prob, y.roc[id.te])
+  perf.tree <- performance(pred.tree, measure='tpr', x.measure='fpr')
+
+
+  # 8-Random Forest
+  library(randomForest)
+  rf.mod    <- randomForest(as.factor(y)~., data=xy[id.tr, ])
+  prob      <- predict(rf.mod, x[id.te, ], type='prob')[,2]
+  pred.rf   <- prediction(prob, y.roc[id.te])
+  perf.rf   <- performance(pred.rf, measure='tpr', x.measure='fpr')
+  
+  # 9-Stochastic Adaptive Boosting
+  
+  boost.mod   <- ada(as.factor(y)~., data=xy[id.tr, ])
+  prob        <- predict(boost.mod, x[id.te, ], type='probs')[,2]
+  pred.boost  <- prediction(prob, y.roc[id.te])
+  perf.boost  <- performance(pred.boost, measure='tpr', x.measure='fpr')
+  
+  # 10-Gaussian Processes
+  
+  gp.mod    <- gausspr(as.factor(y)~., data=xy[id.tr, ], type='classification', kernel='rbfdot')
+  prob      <- predict(gp.mod, x[id.te, ], type='prob')[,2]
+  pred.gp   <- prediction(prob, y.roc[id.te])
+  perf.gp   <- performance(pred.gp, measure='tpr', x.measure='fpr')
+  
+  plot(perf.lda, col=2, lwd= 2, lty=1, main=paste('Comparison of Predictive ROC curves'))
+  plot(perf.qda, col=3, lwd= 2, lty=1, add=TRUE)
+  plot(perf.log, col=4, lwd= 2, lty=1, add=TRUE)
+  plot(perf.naive, col=5, lwd= 2, lty=1, add=TRUE)
+  plot(perf.kNN, col=6, lwd= 2, lty=1, add=TRUE)
+  plot(perf.svm, col=7, lwd= 2, lty=1, add=TRUE)
+  plot(perf.tree, col=8, lwd= 2, lty=1, add=TRUE)
+  plot(perf.rf, col=9, lwd= 2, lty=1, add=TRUE)
+  plot(perf.boost, col=10, lwd= 2, lty=1, add=TRUE)
+  plot(perf.gp, col=11, lwd= 2, lty=1, add=TRUE)
+  abline(a=0,b=1)
+  legend('bottomright', inset=0.05, c('LDA','QDA', 'LOG', 'NB', 'kNN','SVM','TREE', 'RF','BOOST','GP'),  
+         col=2:11, lty=1)
+```
+
+
+
+## Predictive performance using stochastic hold out
+
+Once members of various function spaces are chosen using perhaps cross validation as 
+above, it becomes interesting to compare several methods via many copies of their
+test errors generated randomly via stochastic hold out. We first do it for a single
+learning machine and then we move on to several different learning machines
+
+  ##############################################################
+  #  Predictively compare different kNN  learning machines     #
+  ##############################################################
+
+We now consider the actually comparison of various different learning machines in terms
+of their predictive performances obtained via stochastic hold out. In this case, we are
+comparing different members of the nearest neighbors paradigm, but in reality, we can
+and will consider learning machines originating from drastically different paradigms
+
+```{R}
+  set.seed (19671210)          # Set seed for random number generation to be reproducible
+  
+  epsilon <- 1/3               # Proportion of observations in the test set
+  
+  R <- 50   # Number of replications
+  test.err <- matrix(0, nrow=R, ncol=11)
+  
+  library(class)
+  
+  for(r in 1:R)
+  {
+    # Split the data
+    
+    hold <- stratified.holdout(as.factor(xy[,pos]), 1-epsilon) 
+    id.tr <- hold$idx1
+    id.te <- hold$idx2
+    ntr   <- length(id.tr)
+    nte   <- length(id.te)
+  
+    y.te         <- y[id.te]                            # True responses in test set
+    
+    # 1-Linear Discriminant Analysis
+  
+    lda.mod        <- lda(x[id.tr,], y.roc[id.tr])
+    y.te.hat       <- predict(lda.mod, x[id.te,])$class
+    ind.err.te     <- ifelse(y.te!=y.te.hat,1,0)    # Random variable tracking error. Indicator
+    test.err[r,1]  <- mean(ind.err.te)
+    
+    # 2-Quadratic Discriminant Analysis
+  
+    qda.mod        <- qda(x[id.tr,], y.roc[id.tr])
+    y.te.hat       <- predict(qda.mod, x[id.te,])$class
+    ind.err.te     <- ifelse(y.te!=y.te.hat,1,0)                      # Random variable tracking error. Indicator
+    test.err[r,2]  <- mean(ind.err.te)
+    
+
+    # 3-Naive Bayes 
+  
+    naive.mod      <- naive_bayes(as.factor(y)~., data=xy[id.tr, ])
+    y.te.hat       <- predict(naive.mod, x[id.te,], type='class')  
+    ind.err.te     <- ifelse(y.te!=y.te.hat,1,0)                      # Random variable tracking error. Indicator
+    test.err[r,3]  <- mean(ind.err.te)
+    
+    # 4-Nearest Neighbors Learning Machine
+
+    y.te.hat       <- knn(x[id.tr,], x[id.te,], y.roc[id.tr], k=1, prob=TRUE)
+    ind.err.te     <- ifelse(y.te!=y.te.hat,1,0)  # Random variable tracking error. Indicator
+    test.err[r,4]  <- mean(ind.err.te)
+    
+    # 5-Support Vector Machines
+  
+    svm.mod        <- ksvm(as.factor(y)~., data=xy[id.tr, ], kernel='rbfdot', type='C-svc', prob.model=TRUE)
+    y.te.hat       <- predict(svm.mod, x[id.te, ], type='response')
+    ind.err.te     <- ifelse(y.te!=y.te.hat,1,0)  # Random variable tracking error. Indicator
+    test.err[r,5]  <- mean(ind.err.te)
+  
+    # 6-Classification Trees
+  
+    tree.mod       <- rpart(as.factor(y)~., data=xy[id.tr, ])
+    y.te.hat       <- predict(tree.mod, x[id.te, ], type='class')
+    ind.err.te     <- ifelse(y.te!=y.te.hat,1,0)  # Random variable tracking error. Indicator
+    test.err[r,6]  <- mean(ind.err.te)
+  
+    # 7-Random Forest
+  
+    rf.mod         <- randomForest(as.factor(y)~., data=xy[id.tr, ])
+    y.te.hat       <- predict(rf.mod, x[id.te, ], type='response')
+    ind.err.te     <- ifelse(y.te!=y.te.hat,1,0)   # Random variable tracking error. Indicator
+    test.err[r,7]  <- mean(ind.err.te)
+  
+    # 8-Stochastic Adaptive Boosting
+  
+    boost.mod      <- ada(as.factor(y)~., data=xy[id.tr, ])
+    y.te.hat       <- predict(boost.mod, x[id.te, ], type='vector')
+    ind.err.te     <- ifelse(y.te!=y.te.hat,1,0)  # Random variable tracking error. Indicator
+    test.err[r,8]  <- mean(ind.err.te)
+  
+    # 9-Gaussian Processes
+  
+    gp.mod         <- gausspr(as.factor(y)~., data=xy[id.tr, ], type='classification', kernel='rbfdot')
+    y.te.hat       <- predict(gp.mod, x[id.te, ], type='response')
+    ind.err.te     <- ifelse(y.te!=y.te.hat,1,0)  # Random variable tracking error. Indicator
+    test.err[r,9] <- mean(ind.err.te)
+
+    # 10-Bagging
+  
+    bagging.mod    <- bagging(as.factor(y)~., data=xy[id.tr, ], mfinal=5)
+    y.te.hat       <- predict(bagging.mod, x[id.te, ], type='class')
+    ind.err.te     <- ifelse(y.te!=y.te.hat,1,0)    # Random variable tracking error. Indicator
+    test.err[r,10] <- mean(ind.err.te)
+    
+    # 11-Neural Networks
+    
+    library(nnet)
+    nnet.mod       <- nnet(as.factor(y)~., data=xy[id.tr, ], size=15)
+    y.te.hat       <- as.factor(ifelse(predict(nnet.mod, x[id.te,], type='class')==1,1,0))
+    ind.err.te     <- ifelse(y.te!=y.te.hat,1,0)   # Random variable tracking error. Indicator
+    test.err[r,11] <- mean(ind.err.te)
+    
+    #library(xgboost)
+    #xgboost.mod <- train(as.factor(y)~., data=xy[id.tr, ],  method = "xgbTree", 
+    #                     trControl = trainControl("cv", number = 10))
+    #y.te.hat       <- predict(xgboost.mod, x[id.te, ])
+    #ind.err.te     <- ifelse(y.te!=y.te.hat,1,0)    # Random variable tracking error. Indicator
+    #test.err[r,12] <- mean(ind.err.te)
+
+  }  
+  
+  test <- data.frame(test.err)
+  Method<-c('LDA','QDA','NB', 'kNN','SVM','TREE', 'RF','BOOST','GP', 'BAG', 'NN')
+  colnames(test) <- Method
+  boxplot(test)
+```  
+
+
+We can also explore the accuracy
+```{R}
+  accu <- data.frame(1-test.err)
+  Method<-c('LDA','QDA','NB', 'kNN','SVM','TREE', 'RF','BOOST','GP', 'BAG', 'NN')
+  colnames(accu) <- Method
+  boxplot(accu)
+```  
+
+Once again, we also produce a nicer looking version of the same plot using the famous ggplot
+
+```{R}
+  require(reshape2)
+  ggplot(data = melt(test), aes(x=variable, y=value)) + geom_boxplot(aes(fill=variable))+
+    labs(x='Method', y=expression(hat(A)[te](hat(f))))+
+    theme(legend.position="none") 
+```
+
+Enjoying ggplot for accuracy
+
+```{R}
+  require(reshape2)
+  ggplot(data = melt(accu), aes(x=variable, y=value)) + geom_boxplot(aes(fill=variable))+
+    labs(x='Method', y=expression(hat(P)[te](hat(f))))+
+    theme(legend.position="none") 
+```
+
+
+## Analysis of Variance 
+
+From a purely statistical perspective, it often becomes important to perform  the
+inferential method of analysis of variance to more rigorously and more formally
+compare the learning machines under consideration
+
+```{R}
+#  
+# Is the difference between the methods significant
+#  
+  aov.method <- aov(value~variable, data=melt(test))
+  anova(aov.method)
+  #summary(aov.method)
+  
+  TukeyHSD(aov.method, ordered = TRUE)
+  plot(TukeyHSD(aov.method))
+```
+The comparison in this case is trivial.

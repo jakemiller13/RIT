@@ -43,7 +43,8 @@
     pv    <- 0.80
 
     quartz()
-    display(t(matrix(rowMeans(faces), nrow=28, ncol=23)), method = "raster", frame=0, all = TRUE)
+    display(t(matrix(rowMeans(faces), nrow = 28, ncol = 23)),
+            method = "raster", frame = 0, all = TRUE)
     
     quartz()
     display(t(matrix(apply(faces,1,median), nrow=28, ncol=23)), method = "raster", frame=0, all = TRUE)
