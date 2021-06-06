@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html class='pc chrome mac psc_dir-ltr psc_form-xlarge' dir='ltr' lang='en'>
+<!-- Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved. -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><body><table border='1' cellpadding='3' cellspacing='0'>
+<tr>
+<th>Class Description / Topic</th><th>Section</th><th>Status</th><th>Capacity</th><th>Enrollment</th><th>Instructor</th><th>Days &amp; Time</th><th>Room</th></tr>
+<tr>
+<td  >NSSA( 102)-Computer Systems Concepts</td>
+<td  >01(LEC)53080</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >17</td>
+<td  >Lawrence Hill</td>
+<td  >WeFr 8:00AM - 8:50AM</td>
+<td  >Slaughter Hall (SLA)-2150</td>
+<tr>
+<td  >NSSA( 102)-Computer Systems Concepts</td>
+<td  >01L1(LAB)53081</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >17</td>
+<td  >Lawrence Hill</td>
+<td  >Mo 8:00AM - 9:50AM</td>
+<td  >Golisano Hall (GOL)-2320</td>
+<tr>
+<td  >NSSA( 102)-Computer Systems Concepts</td>
+<td  >600(LEC)56723</td>
+<td  >&nbsp;</td>
+<td  >19</td>
+<td  >20</td>
+<td  >Omar Abdul Latif</td>
+<td  >Mo 9:00AM - 10:50AM</td>
+<td  >Dubai 105B</td>
+<tr>
+<td  >NSSA( 102)-Computer Systems Concepts</td>
+<td  >60L1(LAB)56724</td>
+<td  >&nbsp;</td>
+<td  >19</td>
+<td  >20</td>
+<td  >Omar Abdul Latif</td>
+<td  >We 9:00AM - 10:50AM</td>
+<td  >Dubai 105B</td>
+<tr>
+<td  >NSSA( 220)-TaskAutomUsingInterpretLangs</td>
+<td  >01(LEC)52687</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >25</td>
+<td  >Erik Golen</td>
+<td  >TuTh 3:30PM - 4:45PM</td>
+<td  >Golisano Hall (GOL)-2650</td>
+<tr>
+<td  >NSSA( 220)-TaskAutomUsingInterpretLangs</td>
+<td  >02(LEC)53007</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >23</td>
+<td  >Garret Arcoraci</td>
+<td  >TuTh 2:00PM - 3:15PM</td>
+<td  >Golisano Hall (GOL)-2650</td>
+<tr>
+<td  >NSSA( 221)-Systems Administration I</td>
+<td  >02(LEC)52855</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >30</td>
+<td  >Garret Arcoraci</td>
+<td  >MoWe 10:00AM - 10:50AM</td>
+<td  >Golisano Hall (GOL)-2590</td>
+<tr>
+<td  >NSSA( 221)-Systems Administration I</td>
+<td  >02L2(LAB)52856</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >30</td>
+<td  >Garret Arcoraci</td>
+<td  >Fr 10:00AM - 11:50AM</td>
+<td  >Golisano Hall (GOL)-2320</td>
+<tr>
+<td  >NSSA( 221)-Systems Administration I</td>
+<td  >03(LEC)52857</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >18</td>
+<td  >Jonathan Weissman</td>
+<td  >MoWe 12:00PM - 12:50PM</td>
+<td  >Golisano Hall (GOL)-2690</td>
+<tr>
+<td  >NSSA( 221)-Systems Administration I</td>
+<td  >03L3(LAB)52858</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >18</td>
+<td  >Jonathan Weissman</td>
+<td  >Fr 12:00PM - 1:50PM</td>
+<td  >Golisano Hall (GOL)-2320</td>
+<tr>
+<td  >NSSA( 221)-Systems Administration I</td>
+<td  >04(LEC)52938</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >7</td>
+<td  >John Simonson</td>
+<td  >MoWe 2:00PM - 2:50PM</td>
+<td  >Golisano Hall (GOL)-2690</td>
+<tr>
+<td  >NSSA( 221)-Systems Administration I</td>
+<td  >04L4(LAB)52939</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >7</td>
+<td  >John Simonson</td>
+<td  >Fr 2:00PM - 3:50PM</td>
+<td  >Golisano Hall (GOL)-2320</td>
+<tr>
+<td  >NSSA( 241)-Intro.RoutingandSwitching</td>
+<td  >01(LEC)52690</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >30</td>
+<td  >Sharon Mason</td>
+<td  >MoWe 9:00AM - 9:50AM</td>
+<td  >Slaughter Hall (SLA)-2150</td>
+<tr>
+<td  >NSSA( 241)-Intro.RoutingandSwitching</td>
+<td  >01L1(LAB)52691</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >30</td>
+<td  >Sharon Mason</td>
+<td  >Fr 8:00AM - 9:50AM</td>
+<td  >Golisano Hall (GOL)-2160</td>
+<tr>
+<td  >NSSA( 241)-Intro.RoutingandSwitching</td>
+<td  >02(LEC)52692</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >30</td>
+<td  >Sylvia Perez-Hardy</td>
+<td  >MoWe 1:00PM - 1:50PM</td>
+<td  >Slaughter Hall (SLA)-2150</td>
+<tr>
+<td  >NSSA( 241)-Intro.RoutingandSwitching</td>
+<td  >02L2(LAB)52693</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >30</td>
+<td  >Sylvia Perez-Hardy</td>
+<td  >Fr 12:00PM - 1:50PM</td>
+<td  >Golisano Hall (GOL)-2160</td>
+<tr>
+<td  >NSSA( 241)-Intro.RoutingandSwitching</td>
+<td  >03(LEC)52818</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >30</td>
+<td  >Bruce Hartpence</td>
+<td  >MoWe 2:00PM - 2:50PM</td>
+<td  >Golisano Hall (GOL)-1445</td>
+<tr>
+<td  >NSSA( 241)-Intro.RoutingandSwitching</td>
+<td  >03L3(LAB)52819</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >30</td>
+<td  >Bruce Hartpence</td>
+<td  >Fr 2:00PM - 3:50PM</td>
+<td  >Golisano Hall (GOL)-2160</td>
+<tr>
+<td  >NSSA( 241)-Intro.RoutingandSwitching</td>
+<td  >04(LEC)52859</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >30</td>
+<td  >Mitel Kuliner</td>
+<td  >Mo 5:00PM - 6:50PM</td>
+<td  >Golisano Hall (GOL)-1445</td>
+<tr>
+<td  >NSSA( 241)-Intro.RoutingandSwitching</td>
+<td  >04L4(LAB)52860</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >30</td>
+<td  >Mitel Kuliner</td>
+<td  >We 5:00PM - 6:50PM</td>
+<td  >Golisano Hall (GOL)-2160</td>
+<tr>
+<td  >NSSA( 241)-Intro.RoutingandSwitching</td>
+<td  >05(LEC)52861</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >30</td>
+<td  >Lawrence Hill</td>
+<td  >Tu 5:00PM - 6:50PM</td>
+<td  >Golisano Hall (GOL)-3435</td>
+<tr>
+<td  >NSSA( 241)-Intro.RoutingandSwitching</td>
+<td  >05L5(LAB)52862</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >30</td>
+<td  >Lawrence Hill</td>
+<td  >Th 5:00PM - 6:50PM</td>
+<td  >Golisano Hall (GOL)-2160</td>
+<tr>
+<td  >NSSA( 241)-Intro.RoutingandSwitching</td>
+<td  >600(LEC)56727</td>
+<td  >&nbsp;</td>
+<td  >28</td>
+<td  >28</td>
+<td  >Dr. Ali Raza</td>
+<td  >Tu 1:05PM - 2:55PM</td>
+<td  >Dubai 212</td>
+<tr>
+<td  >NSSA( 241)-Intro.RoutingandSwitching</td>
+<td  >60L1(LAB)56728</td>
+<td  >&nbsp;</td>
+<td  >28</td>
+<td  >28</td>
+<td  >Dr. Ali Raza</td>
+<td  >Th 1:05PM - 2:55PM</td>
+<td  >Dubai 125</td>
+<tr>
+<td  >NSSA( 244)-Virtualization</td>
+<td  >01(LEC)52843</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >31</td>
+<td  >Garret Arcoraci</td>
+<td  >TuTh 9:30AM - 10:45AM</td>
+<td  >Golisano Hall (GOL)-2320</td>
+<tr>
+<td  >NSSA( 245)-Network Services</td>
+<td  >01(LEC)52777</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >7</td>
+<td  >Sylvia Perez-Hardy</td>
+<td  >MoFr 9:00AM - 9:50AM</td>
+<td  >Golisano Hall (GOL)-2690</td>
+<tr>
+<td  >NSSA( 245)-Network Services</td>
+<td  >01L1(LAB)52778</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >7</td>
+<td  >Sylvia Perez-Hardy</td>
+<td  >We 8:00AM - 9:50AM</td>
+<td  >Golisano Hall (GOL)-2320</td>
+<tr>
+<td  >NSSA( 245)-Network Services</td>
+<td  >02(LEC)52780</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >31</td>
+<td  >Jonathan Weissman</td>
+<td  >MoFr 10:00AM - 10:50AM</td>
+<td  >Golisano Hall (GOL)-2690</td>
+<tr>
+<td  >NSSA( 245)-Network Services</td>
+<td  >02L2(LAB)52781</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >31</td>
+<td  >Jonathan Weissman</td>
+<td  >We 10:00AM - 11:50AM</td>
+<td  >Golisano Hall (GOL)-2320</td>
+<tr>
+<td  >NSSA( 245)-Network Services</td>
+<td  >03(LEC)55874</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >28</td>
+<td  >Mitel Kuliner</td>
+<td  >MoFr 12:00PM - 12:50PM</td>
+<td  >Golisano Hall (GOL)-1445</td>
+<tr>
+<td  >NSSA( 245)-Network Services</td>
+<td  >03L3(LAB)55876</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >28</td>
+<td  >Mitel Kuliner</td>
+<td  >We 12:00PM - 1:50PM</td>
+<td  >Golisano Hall (GOL)-2320</td>
+<tr>
+<td  >NSSA( 245)-Network Services</td>
+<td  >04(LEC)55877</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >20</td>
+<td  >Sylvia Perez-Hardy</td>
+<td  >MoFr 2:00PM - 2:50PM</td>
+<td  >Golisano Hall (GOL)-2455</td>
+<tr>
+<td  >NSSA( 245)-Network Services</td>
+<td  >04L4(LAB)55878</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >20</td>
+<td  >Sylvia Perez-Hardy</td>
+<td  >We 2:00PM - 3:50PM</td>
+<td  >Golisano Hall (GOL)-2320</td>
+<tr>
+<td  >NSSA( 245)-Network Services</td>
+<td  >600(LEC)56840</td>
+<td  >&nbsp;</td>
+<td  >15</td>
+<td  >15</td>
+<td  >Dr. Ali Raza</td>
+<td  >Mo 11:00AM - 12:50PM</td>
+<td  >Dubai 212</td>
+<tr>
+<td  >NSSA( 245)-Network Services</td>
+<td  >60L1(LAB)56841</td>
+<td  >&nbsp;</td>
+<td  >15</td>
+<td  >15</td>
+<td  >Dr. Ali Raza</td>
+<td  >We 11:00AM - 12:50PM</td>
+<td  >Dubai 215</td>
+<tr>
+<td  >NSSA( 290)-NetEssentialsForDevelopers</td>
+<td  >01(LEC)52694</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >14</td>
+<td  >Sharon Mason</td>
+<td  >TuTh 8:00AM - 9:15AM</td>
+<td  >Golisano Hall (GOL)-1445</td>
+<tr>
+<td  >NSSA( 322)-Systems Administration II</td>
+<td  >01(LEC)52695</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >16</td>
+<td  >Garret Arcoraci</td>
+<td  >Mo 5:00PM - 6:50PM</td>
+<td  >Golisano Hall (GOL)-2400</td>
+<tr>
+<td  >NSSA( 322)-Systems Administration II</td>
+<td  >01L1(LAB)52696</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >16</td>
+<td  >Garret Arcoraci</td>
+<td  >We 5:00PM - 6:50PM</td>
+<td  >Golisano Hall (GOL)-2320</td>
+<tr>
+<td  >NSSA( 370)-ProjectManagement</td>
+<td  >01(LEC)52697</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >30</td>
+<td  >Andrew Dimock, <br />Richard Keller</td>
+<td  >MoWeFr 12:00PM - 12:50PM</td>
+<td  >Golisano Hall (GOL)-1455</td>
+<tr>
+<td  >NSSA( 422)-StorageArchitectures</td>
+<td  >01(LEC)52844</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >5</td>
+<td  >Charles Border</td>
+<td  >TuTh 8:00AM - 9:15AM</td>
+<td  >Golisano Hall (GOL)-1455</td>
+<tr>
+<td  >NSSA( 425)-DataCenterOperations</td>
+<td  >01(LEC)52828</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >8</td>
+<td  >Lawrence Hill</td>
+<td  >TuTh 2:00PM - 3:15PM</td>
+<td  >Golisano Hall (GOL)-2455</td>
+<tr>
+<td  >NSSA( 441)-AdvancedRoutingAndSwitching</td>
+<td  >01(LEC)52782</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >8</td>
+<td  >Bruce Hartpence, <br />Nirmala Shenoy</td>
+<td  >Tu 5:00PM - 7:50PM</td>
+<td  >Golisano Hall (GOL)-2160</td>
+<tr>
+<td  >NSSA( 443)-NetworkDesignandPerformance</td>
+<td  >01(LEC)52698</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >19</td>
+<td  >Garret Arcoraci, <br />Nirmala Shenoy</td>
+<td  >TuTh 11:00AM - 12:15PM</td>
+<td  >Golisano Hall (GOL)-2455</td>
+<tr>
+<td  >NSSA( 602)-EnterpriseComputing</td>
+<td  >01(LEC)52822</td>
+<td  >&nbsp;</td>
+<td  >25</td>
+<td  >5</td>
+<td  >Lawrence Hill</td>
+<td  >MoWeFr 12:00PM - 12:50PM</td>
+<td  >Slaughter Hall (SLA)-2150</td>
+<tr>
+<td  >NSSA( 610)-AdvancedWiredNetworkConcepts</td>
+<td  >01(LEC)55879</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >4</td>
+<td  >Bruce Hartpence</td>
+<td  >TuTh 2:00PM - 3:15PM</td>
+<td  >Sustainability Inst(SUS)-3140</td>
+<tr>
+<td  >NSSA( 710)-NetworkManagement</td>
+<td  >02(LEL)52846</td>
+<td  >&nbsp;</td>
+<td  >10</td>
+<td  >5</td>
+<td  >Kenneth Coleman</td>
+<td  >TBA</td>
+<td  >Online Class</td>
+<tr>
+<td  >NSSA( 713)-EnterpriseServiceProvisioning</td>
+<td  >01(LEC)52700</td>
+<td  >&nbsp;</td>
+<td  >15</td>
+<td  >5</td>
+<td  >Charles Border</td>
+<td  >TuTh 3:30PM - 4:45PM</td>
+<td  >Golisano Hall (GOL)-2690</td>
+<tr>
+<td  >NSSA( 713)-EnterpriseServiceProvisioning</td>
+<td  >02(LEC)52766</td>
+<td  >&nbsp;</td>
+<td  >10</td>
+<td  ></td>
+<td  >Charles Border</td>
+<td  >TBA</td>
+<td  >Online Class</td>
+<tr>
+<td  >NSSA( 714)-AdvancedLargeScaleComputing</td>
+<td  >01(LEC)52847</td>
+<td  >&nbsp;</td>
+<td  >25</td>
+<td  >8</td>
+<td  >Charles Border</td>
+<td  >TuTh 9:30AM - 10:45AM</td>
+<td  >Golisano Hall (GOL)-2690</td>
+<tr>
+<td  >NSSA( 790)-MSThesis</td>
+<td  >01(THE)52751</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  ></td>
+<td  >Qi Yu</td>
+<td  >TBA</td>
+<td  >Instructor Provided</td>
+<tr>
+<td  >NSSA( 790)-MSThesis</td>
+<td  >600(THE)56729</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  ></td>
+<td  >Dr. Ali Raza</td>
+<td  >TBA</td>
+<td  >TBD</td>
+<tr>
+<td  >NSSA( 791)-MSNSSAProject</td>
+<td  >01(PRO)52752</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >5</td>
+<td  >Qi Yu</td>
+<td  >TBA</td>
+<td  >Instructor Provided</td>
+<tr>
+<td  >NSSA( 791)-MSNSSAProject</td>
+<td  >600(PRO)56730</td>
+<td  >&nbsp;</td>
+<td  >30</td>
+<td  >1</td>
+<td  >Wesam Almobaideen</td>
+<td  >TBA</td>
+<td  >TBD</td>
+<tr>
+<td  >NSSA( 900)-Continuation of Thesis</td>
+<td  >01(CON)52753</td>
+<td  >&nbsp;</td>
+<td  >20</td>
+<td  ></td>
+<td  >Qi Yu</td>
+<td  >TBA</td>
+<td  >Instructor Provided</td>
+<tr>
+<td  >NSSA( 900)-Continuation of Thesis</td>
+<td  >600(CON)56731</td>
+<td  >&nbsp;</td>
+<td  >20</td>
+<td  ></td>
+<td  >Dr. Ali Raza</td>
+<td  >TBA</td>
+<td  >TBD</td>
+<tr>
+<td  >NSSA( 901)-Continuation of Project</td>
+<td  >01(CON)52754</td>
+<td  >&nbsp;</td>
+<td  >20</td>
+<td  >1</td>
+<td  >Qi Yu</td>
+<td  >TBA</td>
+<td  >Instructor Provided</td>
+<tr>
+<td  >NSSA( 909)-Proposal Development</td>
+<td  >01(RSC)52774</td>
+<td  >&nbsp;</td>
+<td  >20</td>
+<td  ></td>
+<td  >Qi Yu</td>
+<td  >TBA</td>
+<td  >Instructor Provided</td>
+</table></body></html>
