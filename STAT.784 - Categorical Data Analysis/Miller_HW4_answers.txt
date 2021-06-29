@@ -1,0 +1,64 @@
+1a: Odds Ratio = 7.964904871914494
+1b: Confidence Interval = (7.208219541362013, 8.801023505821238)
+1c: Expected counts = 
+[[   600.46898646 163527.53101354]
+ [  1510.53101354 411367.46898646]]
+1d: Pearson Chi-Square = 2338.4113653316113
+
+2a: 
+df          2
+pvalue      0.0
+statistic   79.43097633810339
+Small p-value, therefore party and race are associated
+
+2b: 
+[[ 5.82806169 -0.20026086 -5.91344728]
+ [-2.26910303  0.07796975  2.30234713]]
+Strong associations for both democrat and republican. Minimal association for independent.
+
+2c:
+W/o Repub
+----------
+df          1
+pvalue      0.010577030873207938
+statistic   6.535032220028799
+
+Dem + Ind
+----------
+df          1
+pvalue      1.1102230246251565e-16
+statistic   69.97210600027759
+Similar outcome with either removal of Repub or combined Dem + Indep
+
+2d: (5.874738354947657, 21.0524109244531)
+Significantly higher odds (6 - 21 times) that Democrat is Black rather than White
+
+3: Small p-values, therefore reject null - there is an association between gender and political party.
+
+4a:
+df          3
+pvalue      0.20358587474703682
+statistic   4.599489553392587
+
+4b:
+null_mean   209.17582417582418
+null_sd     9.093324082686728
+pvalue      0.15845563447224087
+statistic   222.0
+zscore      1.4102846998043836
+
+4c:
+null_mean   276.6758241758242
+null_sd     9.093324082686728
+pvalue      0.15845563447224087
+statistic   289.5
+zscore      1.4102846998043836
+
+4d:
+null_mean   195.82417582417582
+null_sd     9.093324082686728
+pvalue      0.15845563447224087
+statistic   183.0
+zscore      -1.4102846998043836
+
+4e: All show large p-values, therefore no association.

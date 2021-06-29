@@ -1,0 +1,60 @@
+
+###############
+# Problem 1.a #
+###############
+Expected tickets per week: 128
+
+###############
+# Problem 1.b #
+###############
+Probability 130+ tickets per week: 0.442
+
+###############
+# Problem 1.c #
+###############
+H_0: lambda = 128
+H_a: lambda > 128
+z = 1.0 | critical z = 5.991
+z is not greater than critical z, therefore not enough evidence to reject H_0.
+
+#############
+# Problem 4 #
+#############
+Original:
+    Air  Bus  Car  Train
+NY   28   50   35     47
+NJ   24   11    7      8
+CT   23   37   14      7
+
+The analyst would like to understand the relationship between state and land vs. air, therefore I will combine the various land travel methods
+
+Modified:
+    Air  Land
+NY   28   132
+NJ   24    26
+CT   23    58
+
+Independence:
+df          2
+pvalue      7.761108112747106e-05
+statistic   18.92760068587105
+Small p, therefore there is an association between state and method of travel
+
+Pearson Residuals:
+         Air      Land
+NY -2.061338  1.214655
+NJ  3.095836 -1.824239
+CT  0.464803 -0.273888
+Large positive residual for NJ by air, large negative residual for NY by air.
+Smaller positive residual for NY by land, smaller negative residual for NJ by land.
+Minimal residuals for CT by either air or land.
+Therefore, less people from New York and more people from New Jersey travelled by air than the hypothesis of independence predicts.
+Similar for more people from New York traveling by land and less people from New Jersey.
+
+Chi-squared: 18.93
+With df = 2 and standard deviation of 2, this is well beyond right-hand tail (chi-squared for 2 degrees of freedom at alpha(0.05) = 5.99), therefore further evidence of association.
+
+-- Recommendation --
+The problem does not specify where the convention takes place, but based on the residuals, I will assume it takes place in New York.
+This is based on the higher than expected land travel for people from New York, and higher than expected air travel for people from New Jersey.
+I would therefore recommend that people traveling from New Jersey fly, people from New York travel by land, and folks from Connecticut can travel however they see fit.
