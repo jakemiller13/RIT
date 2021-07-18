@@ -1,0 +1,89 @@
+
+###############################
+# ** NOTE FOR TABLES BELOW ** #
+###############################
+Mantel-Haenszel = "Test of OR=1"
+Breslow-Day = "Test of constant OR"
+
+##############
+# Problem 1a #
+##############
+        V-R  V-NR  NV-R  NV-NR
+Male    118    62   342    178
+Female  178    42   122    158
+
+                   Estimate   LCB    UCB 
+-----------------------------------------
+Pooled odds           1.460   1.148 1.858
+Pooled log odds       0.379   0.138 0.620
+Pooled risk ratio     1.158              
+                                         
+                 Statistic P-value 
+-----------------------------------
+Test of OR=1        10.003   0.002 
+Test constant OR    39.430   0.000 
+                       
+-----------------------
+Number of tables    2  
+Min n             400  
+Max n             800  
+Avg n             600  
+Total n          1200  
+-----------------------
+Based on small p-value, there is an interaction.
+
+##############
+# Problem 1b #
+##############
+       V-R  V-NR  NV-R  NV-NR
+White  132    78   428    262
+Black  164    26    36     74
+
+                   Estimate   LCB    UCB 
+-----------------------------------------
+Pooled odds           1.101   0.824 1.469
+Pooled log odds       0.096  -0.193 0.385
+Pooled risk ratio     1.038              
+                                         
+                 Statistic P-value 
+-----------------------------------
+Test of OR=1         0.457   0.499 
+Test constant OR    61.179   0.000 
+                       
+-----------------------
+Number of tables    2  
+Min n             400  
+Max n             800  
+Avg n             600  
+Total n          1200  
+-----------------------
+Based on small p-value, there is an interaction.
+
+##############
+# Problem 1c #
+##############
+                   Estimate   LCB    UCB 
+-----------------------------------------
+Pooled odds           0.786   0.567 1.089
+Pooled log odds      -0.241  -0.567 0.086
+Pooled risk ratio     0.930              
+                                         
+                 Statistic P-value 
+-----------------------------------
+Test of OR=1         2.128   0.145 
+Test constant OR     0.978   0.807 
+                       
+-----------------------
+Number of tables    4  
+Min n             100  
+Max n             600  
+Avg n             300  
+Total n          1200  
+-----------------------
+Based on very high p-value, there is no interaction when controlling for both race and gender.
+
+##############
+# Problem 1d #
+##############
+Both race and gender, independently, have effects on vaccinations. However, when taken together, they do not.
+This assessment is based on the interactions seen in parts (a) and (b), and the lack of interaction in part (c).
